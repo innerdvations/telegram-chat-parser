@@ -1,0 +1,6 @@
+{
+    "watch": ["src", "tests", "*.json", "*.js"],
+    "ext": "ts,tsx,js,json",
+    "delay": "1",
+    "ignore": ["dist"]
+}

@@ -1,0 +1,11 @@
+version: '3.1'
+services:
+  app:
+    container_name: ts-tester
+    restart: "always"
+    build: .
+    tty: true
+    command: yarn run dev-watch-poll
+    volumes:
+        - ./:/usr/src/app
+
