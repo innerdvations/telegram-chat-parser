@@ -1,10 +1,10 @@
 import { expect } from 'chai';
-import TelegramChat from '../src/index';
+import TelegramChat from '../src/TelegramChat';
 
 describe('TelegramChat', () => {
   it('should load JSON input', () => {
     const tg = new TelegramChat();
-    tg.readFileSync('./tests/data/simple-bot.json');
-    expect(tg.loaded).to.be.true;
+    tg.importSync('./tests/data/simple-bot.json');
+    expect(tg.isLoaded).to.be.true;
   });
 });
