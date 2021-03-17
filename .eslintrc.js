@@ -2,8 +2,12 @@ module.exports = {
   env: {
     browser: false,
     es2021: true,
+    node: true,
   },
-  extends: ['airbnb/base'],
+  extends: [
+    'airbnb/base',
+    'plugin:@typescript-eslint/recommended',
+  ],
   ignorePatterns: ['**/dist', '**/.git', '**/node_modules'],
   overrides: [{
     env: {
@@ -30,6 +34,11 @@ module.exports = {
     }],
     'linebreak-style': ['error', 'unix'],
     'no-underscore-dangle': 'off',
+    'lines-between-class-members': 'off',
+    '@typescript-eslint/type-annotation-spacing': ['error', {
+      before: false,
+      after: false,
+    }],
   },
   settings: {
     'import/resolver': {
