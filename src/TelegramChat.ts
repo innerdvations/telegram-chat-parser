@@ -11,26 +11,26 @@ export default class TelegramChat {
 
   constructor(input:string | null = null) {
     if (input !== null) this._contents = JSON.parse(input);
-  }
+    }
 
-  importSync(path:string):void {
+  public importSync(path:string):void {
     this._contents = JSON.parse(fs.readFileSync(path, { encoding: 'utf8', flag: 'r' }));
     this._loaded = true;
   }
 
-  get isLoaded():boolean {
+  public get isLoaded():boolean {
     return this._loaded;
   }
 
-  get messages():TelegramMessage[] {
+  public get messages():TelegramMessage[] {
     return this._messages;
   }
 
-  get user():TelegramUser[] {
+  public get users():TelegramUser[] {
     return this._users;
   }
 
-  get participants():TelegramUser[] {
+  public get participants():TelegramUser[] {
     return this._participants;
   }
 }
