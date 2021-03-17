@@ -5,10 +5,10 @@ module.exports = {
     node: true,
   },
   extends: [
-    'airbnb/base',
+    'airbnb-typescript/base',
     'plugin:@typescript-eslint/recommended',
   ],
-  ignorePatterns: ['**/dist', '**/.git', '**/node_modules'],
+  ignorePatterns: ['**/dist', '**/.git', '**/node_modules', '.eslintrc.js'],
   overrides: [{
     env: {
       mocha: true,
@@ -21,10 +21,9 @@ module.exports = {
   }],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
-  // parserOptions: {
-  //   ecmaVersion: 12,
-  //   sourceType: 'module',
-  // },
+  parserOptions: {
+    project: ['./tsconfig.json'],
+  },
   rules: {
     'import/extensions': ['error', 'ignorePackages', {
       js: 'never',
@@ -32,9 +31,9 @@ module.exports = {
       ts: 'never',
       tsx: 'never',
     }],
+    '@typescript-eslint/lines-between-class-members': ['error', 'always', { "exceptAfterSingleLine": true }],
     'linebreak-style': ['error', 'unix'],
     'no-underscore-dangle': 'off',
-    'lines-between-class-members': 'off',
     '@typescript-eslint/type-annotation-spacing': ['error', {
       before: false,
       after: false,
