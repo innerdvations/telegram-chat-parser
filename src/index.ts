@@ -1,1 +1,1 @@
-export * from './TelegramChat';
+export * as TelegramChat from './TelegramChat';
