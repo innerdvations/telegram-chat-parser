@@ -5,7 +5,10 @@
   "main": "dist/index.js",
   "author": "Benjamin Irvin",
   "license": "MIT",
-  "pre-commit": [ "lint", "test-min" ],
+  "pre-commit": {
+    "silent": true,
+    "run": [ "lint", "test-min" ]
+  },
   "scripts": {
     "build": "npx tsc",
     "build-watch": "npx tsc-watch",
