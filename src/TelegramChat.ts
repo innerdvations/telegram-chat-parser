@@ -10,8 +10,11 @@ export default class TelegramChat {
   private _loaded = false;
 
   constructor(input:string | null = null) {
-    if (input !== null) this._contents = JSON.parse(input);
+    if (input !== null) {
+      this._contents = JSON.parse(input);
+      this._loaded = true;
     }
+  }
 
   public importSync(path:string):void {
     this._contents = JSON.parse(fs.readFileSync(path, { encoding: 'utf8', flag: 'r' }));
