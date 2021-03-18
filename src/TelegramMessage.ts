@@ -5,6 +5,10 @@ export default class TelegramMessage {
     this._data = exp;
   }
 
+  get data():MessageExport {
+    return this._data;
+  }
+
   get id():string {
     return String(this._data.id);
   }
