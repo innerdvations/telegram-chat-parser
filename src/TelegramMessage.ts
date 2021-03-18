@@ -6,6 +6,6 @@ export default class TelegramMessage {
   }
 
   get id():string {
-    return this.id;
+    return String(this._data.id);
   }
 }
