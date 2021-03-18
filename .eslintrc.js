@@ -8,7 +8,7 @@ module.exports = {
     'airbnb-typescript/base',
     'plugin:@typescript-eslint/recommended',
   ],
-  ignorePatterns: ['**/dist', '**/.git', '**/node_modules', '.eslintrc.js'],
+  ignorePatterns: ['**/dist', '**/.git', '**/node_modules', '.eslintrc.js', 'nyc.config.js'],
   overrides: [{
     env: {
       mocha: true,
