@@ -9,7 +9,7 @@ export default class TelegramMessage {
     return this._data;
   }
 
-  get id():string {
-    return String(this._data.id);
+  get id():number {
+    return this._data.id;
   }
 }

@@ -22,7 +22,7 @@ describe('TelegramMessage', () => {
   describe('#get id()', () => {
     it('should return id', () => {
       const msg = new TelegramMessage(SimpleMsgJSON);
-      expect(msg.id).to.equal(String(SimpleMsgJSON.id));
+      expect(msg.id).to.equal(SimpleMsgJSON.id);
     });
   });
 });

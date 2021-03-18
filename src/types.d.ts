@@ -9,8 +9,8 @@ type MessageExport = {
 };
 
 type ChatExport = {
+  id:number;
   name:string;
   type:string;
-  id:number;
   messages:MessageExport[];
 };

@@ -18,9 +18,10 @@ describe('TelegramChat', () => {
     });
   });
   describe('#id()', () => {
-    it('returns id', () => {
+    it('should be a number', () => {
       const tg = new TelegramChat(SimpleBotJSON);
-      expect(tg.id).to.equal(String(SimpleBotObj.id));
+      expect(tg.id).to.equal(SimpleBotObj.id);
+      expect(tg.id).to.be.a('number');
     });
   });
   describe('#messages()', () => {

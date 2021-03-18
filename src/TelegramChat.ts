@@ -16,8 +16,8 @@ export default class TelegramChat {
     });
   }
 
-  public get id():string {
-    return String(this._contents.id);
+  public get id():number {
+    return this._contents.id;
   }
 
   public get messages():TelegramMessage[] {
