@@ -30,4 +30,16 @@ describe('TelegramChat', () => {
       expect(tg.messages).to.be.array();
     });
   });
+  describe('#name()', () => {
+    it('returns a string', () => {
+      const tg = new TelegramChat(SimpleBotJSON);
+      expect(tg.name).to.be.a('string');
+    });
+  });
+  describe('#type()', () => {
+    it('returns a string', () => {
+      const tg = new TelegramChat(SimpleBotJSON);
+      expect(tg.type).to.be.a('string');
+    });
+  });
 });
