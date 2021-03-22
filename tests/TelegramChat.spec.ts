@@ -2,6 +2,7 @@
 import chai, { expect } from 'chai';
 import * as fs from 'fs';
 import chaiLike from 'chai-like';
+import moment from 'moment';
 import { TelegramChat } from '../src';
 
 chai.use(chaiLike);
@@ -43,6 +44,12 @@ describe('TelegramChat', () => {
       });
       it('should return the correct id', () => {
         expect(tg.messages[0].id).to.eql(SavedObj.messages[0].id);
+      });
+      it('should return the correct date', () => {
+        expect(tg.messages[0].date).to.eql(moment(SavedObj.messages[0].date).toDate());
+      });
+      it('should return the correct moment date', () => {
+        expect(tg.messages[0].dateMoment).to.eql(moment(SavedObj.messages[0].date));
       });
 
       describe('source data', () => {
