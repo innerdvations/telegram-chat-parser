@@ -4,7 +4,8 @@ import * as fs from 'fs';
 import chaiLike from 'chai-like';
 import { TelegramChat } from '../src';
 
-const ErrorJSON = fs.readFileSync('./tests/data/simple-bot.json', { encoding: 'utf8', flag: 'r' });
+const ErrorJSON = fs.readFileSync('./tests/data/error.json', { encoding: 'utf8', flag: 'r' });
+
 const SimpleBotJSON = fs.readFileSync('./tests/data/simple-bot.json', { encoding: 'utf8', flag: 'r' });
 const SimpleBotObj = JSON.parse(SimpleBotJSON);
 
@@ -13,7 +14,9 @@ chai.use(chaiLike);
 describe('TelegramChat', () => {
   describe('when importing invalid json', () => {
     it('should throw an error', () => {
+      expect(() => { new TelegramChat(ErrorJSON); }).to.throw();
       expect(() => { new TelegramChat(ErrorJSON); }).to.throw;
+
     });
   });
 
