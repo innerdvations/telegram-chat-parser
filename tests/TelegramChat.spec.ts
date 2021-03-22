@@ -3,7 +3,7 @@ import chai, { expect } from 'chai';
 import * as fs from 'fs';
 import chaiLike from 'chai-like';
 import moment from 'moment';
-import { TelegramChat } from '../src';
+import { ContentType, TelegramChat, TelegramMessage } from '../src';
 
 chai.use(chaiLike);
 
@@ -98,6 +98,22 @@ describe('TelegramChat', () => {
                 name: SavedObj.messages[0].from,
               },
             );
+        });
+      });
+
+      describe('when content type is image', () => {
+        const msgImage = tg.messages.find((msg) => msg.id === 173429) as TelegramMessage;
+
+        it('should have contentType of image', () => {
+          expect(msgImage.contentType).to.equal(ContentType.Image);
+        });
+      });
+
+      describe('when content type is poll', () => {
+        const msgImage = tg.messages.find((msg) => msg.id === 5) as TelegramMessage;
+
+        it('should have contentType of poll', () => {
+          expect(msgImage.contentType).to.equal(ContentType.Poll);
         });
       });
     });
