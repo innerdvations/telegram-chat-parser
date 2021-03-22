@@ -3,7 +3,7 @@ import { TelegramUser, TelegramMessage, ChatTypes } from '.';
 export default class TelegramChat {
   private _messages:TelegramMessage[] = [];
   private _name = '';
-  private _type = '';
+  private _type:ChatTypes;
   private _id = 0;
   private _users:Record<string, TelegramUser> = {};
 

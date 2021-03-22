@@ -24,8 +24,33 @@ export default class TelegramMessage {
     return Number(this._data.id);
   }
 
+  get type():string {
+    return String(this.data.type);
+  }
+
+  // - text
+  // - image
+  // - audio
+  // - video
+  // - file
+  // - animation
+  // - button
+  // - keyboard
+  // - sticker
+  // - video_file
+  // - voice_message
   // eslint-disable-next-line class-methods-use-this
-  get type():MessageType {
+  get contentType():ContentType {
+    if (this.data.photo !== null && typeof this.data.photo === 'string') {
+      return 'image';
+    }
+    if (this.data.media_type !== null && typeof this.data.media_type === 'string') {
+      if (this.data.media_type === 'animation') return 'animation';
+      if (this.data.media_type === 'voice_message') return 'voice_message';
+      if (this.data.media_type === 'sticker') return 'sticker';
+      if (this.data.media_type === 'video_file') return 'video_file';
+    }
+
     return 'text';
   }
 

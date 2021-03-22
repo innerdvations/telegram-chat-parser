@@ -1,4 +1,4 @@
-// TODO: learn more about API so we can define MessageExport better
+// TODO: learn more about API so we can define ExportedMessage better
 // {
 //   id:number;
 //   type:string;
@@ -18,7 +18,13 @@ type ChatExport = {
   messages:ExportedMessage[];
 };
 
-type MessageType = 'text' | 'image' | 'audio' | 'video' | 'file' | 'animation' | 'button' | 'keyboard';
+type ContentType =
+  'text' | 'image' |
+  'audio' | 'video' |
+  'file' | 'animation' |
+  'button' | 'keyboard' |
+  'voice_message' | 'sticker' |
+  'video_file';
 
 type ExportedText = string | [TextObject];
 

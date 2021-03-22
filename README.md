@@ -27,14 +27,34 @@ This module attempts to match data used by Telegram API but with a few exception
     // name of the chat / name of the user the chat is with
     name: String;
     
-    // bot_chat, private_group, personal_chat
+    // bot_chat, private_group, personal_chat, public_
     // Possibly supergroup, channel, group, or any other Telegram schema type but those haven't been tested)
-    type: String;
+    type: ChatType;
+
+    // shortcuts to check type
+    isBot: boolean;
+    isPublic: boolean;
+    isGroup: boolean;
+    isPublicSupergroup: boolean;
+    isPrivateGroup: boolean;
+    isChannel: boolean;
 
     // Array of all messages in chat
     messages: TelegramMessage[];
 }
 ```
+
+#### ChatType
+
+One of the following strings:
+
+- bot_chat
+- private_group
+- public_supergroup
+- personal_chat
+- saved_messages
+- private_channel
+- public_channel
 
 ### TelegramMessage
 
@@ -45,8 +65,11 @@ See  for more detailed descriptions.
     // Unique chat identifier
     id: number;
 
+    // Message type (service or message)
+    type: 'message' | 'service';
+
     // Message type based on content
-    type: String;
+    contentType: ContentType;
 
     // Moment object holding date
     dateMoment: Moment;
@@ -59,14 +82,13 @@ See  for more detailed descriptions.
 
     // message text converted into a string instead of string|object[]
     text(options:TextOptions): String;
+
 }
 ```
 
-#### TelegramMessage type
+#### ContentType
 
-The `type` property found in the exported message object is either `message` or `service`.
-
-Instead, this module looks at the contents of the message and attempts to determines to determine what type of message it is, based on the message type used by the Telegram Bot API, one of the following values:
+One of the following strings:
 
 - text
 - image
@@ -76,8 +98,7 @@ Instead, this module looks at the contents of the message and attempts to determ
 - animation
 - button
 - keyboard
-
-`isService` can be used to check if a message was a service message.
+- voice_message
 
 ### TelegramUser
 
@@ -94,34 +115,11 @@ TypeScript:
 
 ```typescript
 import { Chat } from 'telegram-chat-parser'
+import * as fs from 'fs';
 
 // read in the chat file
-const chat = new TelegramChat('result.json');
+const json = fs.readFileSync('./tests/data/error.json', { encoding: 'utf8', flag: 'r' });
+const chat = new TelegramChat(json);
 
-// get chat data by participant
-const participants:TgUser[] = chat.participants();
-const ben = participants.find( (user: TgUser) => user.name === "Ben" );
-const SomeBot = participants.find( (user: TgUser) => user.name === "SomeBot" );
-
-ben.messages.forEach( (message:TgMessage) => {
-    console.log(message.text); // plain text
-    console.log(message.html); // convert to html
-    console.log(message.full); // original json array
-});
-
-// get chat data by message
-const allMessages:TgMessage[] = chat.messages();
-
-// get specific subsets of messages
-const videos:TgMessage[] = allMessages.filter( (msg:TgMessage) => msg.isVideo() );
-const textsOnly:TgMessage[] = allMessages.filter( (msg:TgMessage) => !msg.isMedia() );
-const over100Chars = messages.filter( (msg:TgMessage) => msg.hasText() && msg.text.length > 100 );
-
-// messages maintain pointers to previous and next messages in the chat
-const first = messages[0];
-const second = first.next();
-
-// get all users mentioned (such as from forward messages in other chats)
-const users:TgUser[] = chat.users();
 
 ```
