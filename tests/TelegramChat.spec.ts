@@ -31,6 +31,12 @@ describe('TelegramChat', () => {
       it('should all exist', () => {
         expect(tg.messages).to.have.length(SimpleBotObj.messages.length);
       });
+
+      describe('source data', () => {
+        it('should be retrievable by key', () => {
+          expect(tg.messages[0].src('type')).to.equal(SimpleBotObj.messages[0].type);
+        });
+      });
     });
   });
 });

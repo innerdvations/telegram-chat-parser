@@ -37,7 +37,7 @@ export default class TelegramMessage {
     return this._date;
   }
 
-  get text() {
-    return this._text;
+  get text():string {
+    return String(this._text);
   }
 }
