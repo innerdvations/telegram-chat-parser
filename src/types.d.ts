@@ -28,6 +28,6 @@ type ContentType =
 
 type ExportedText = string | [TextObject];
 
-// allow 'any' until it can be refined from Telegram schemas
+// TODO: replace 'any' with type from Telegram schemas
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type TextObject = any;
