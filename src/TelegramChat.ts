@@ -32,6 +32,10 @@ export default class TelegramChat {
     return this.type === ChatTypes.Bot;
   }
 
+  public get isGroup():boolean {
+    return this.type === ChatTypes.Bot;
+  }
+
   public get id():number {
     return this._id;
   }

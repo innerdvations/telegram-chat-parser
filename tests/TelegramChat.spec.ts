@@ -9,18 +9,35 @@ const ErrorJSON = fs.readFileSync('./tests/data/error.json', { encoding: 'utf8',
 const SimpleBotJSON = fs.readFileSync('./tests/data/simple-bot.json', { encoding: 'utf8', flag: 'r' });
 const SimpleBotObj = JSON.parse(SimpleBotJSON);
 
+const SimpleGroupJSON = fs.readFileSync('./tests/data/simple-bot.json', { encoding: 'utf8', flag: 'r' });
+const SimpleGroupObj = JSON.parse(SimpleGroupJSON);
+
 chai.use(chaiLike);
 
 describe('TelegramChat', () => {
   describe('when importing invalid json', () => {
     it('should throw an error', () => {
       expect(() => { new TelegramChat(ErrorJSON); }).to.throw();
-      expect(() => { new TelegramChat(ErrorJSON); }).to.throw;
-
     });
   });
 
-  describe('when importing SimpleBot json', () => {
+  describe('when importing private group chat json', () => {
+    const tg = new TelegramChat(SimpleGroupJSON);
+    it('should have correct id', () => {
+      expect(tg.id).to.equal(SimpleGroupObj.id);
+    });
+    it('should have correct type', () => {
+      expect(tg.type).to.equal(SimpleGroupObj.type);
+    });
+    it('should have correct name', () => {
+      expect(tg.name).to.equal(SimpleGroupObj.name);
+    });
+    it('isGroup should be true', () => {
+      expect(tg.isGroup).to.be.true;
+    });
+  });
+
+  describe('when importing bot chat json', () => {
     const tg = new TelegramChat(SimpleBotJSON);
 
     it('should have correct id', () => {
