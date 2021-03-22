@@ -62,13 +62,16 @@ describe('TelegramChat', () => {
         expect(tg.messages[0].data).to.eql(SavedObj.messages[0]);
       });
       it('should return the correct id', () => {
-        expect(tg.messages[0].id).to.eql(SavedObj.messages[0].id);
+        expect(tg.messages[0].id).to.equal(SavedObj.messages[0].id);
       });
       it('should return the correct date', () => {
         expect(tg.messages[0].date).to.eql(moment(SavedObj.messages[0].date).toDate());
       });
       it('should return the correct moment date', () => {
         expect(tg.messages[0].dateMoment).to.eql(moment(SavedObj.messages[0].date));
+      });
+      it('should have correct type', () => {
+        expect(tg.messages[0].type).to.equal(SavedObj.messages[0].type);
       });
 
       describe('source data', () => {
