@@ -1,0 +1,235 @@
+{
+ "type": "saved_messages",
+ "id": 9999999999,
+ "messages": [
+  {
+   "id": 173429,
+   "type": "ERROR:wrong_type",
+   "date": "2020-08-01T22:01:49",
+   "from": "Ben",
+   "from_id": 9999999999,
+   "photo": "photos/photo_1@01-08-2020_22-01-49.jpg",
+   "width": 904,
+   "height": 1280,
+   "text": "I'm a photo message sent straight to saved."
+  },
+  {
+   "id": 173429,
+   "type": "message",
+   "date": "2020-08-01T22:01:49",
+   "from": "Ben",
+   "from_id": "ERROR:from is string",
+   "text": [
+    "1",
+    {
+     "type": "bold",
+     "text": "2"
+    },
+    "3",
+    {
+     "type": "italic",
+     "text": "4"
+    },
+    "5",
+    {
+     "type": "underline",
+     "text": "6"
+    },
+    {
+     "type": "strikethrough",
+     "text": "7"
+    },
+    ""
+   ]
+  },
+  {
+   "id": 176169,
+   "type": "message",
+   "date": "2020-08-04T10:49:13",
+   "from": "Ben",
+   "from_id": 9999999999,
+   "text": { "error": "ERROR: text is object" }
+  },
+  {
+   "id": 176390,
+   "type": "message",
+   "date": "2020-08-04T16:13:16",
+   "from": "Ben",
+   "from_id": 9999999999,
+   "forwarded_from": "Other Person",
+   "ERROR:saved_from": "Other Person",
+   "text": "I’m a message from another person forwarded to saved chat"
+  },
+  {
+   "id": 183290,
+   "type": "message",
+   "date": "2020-08-12T15:14:44",
+   "from": "Ben",
+   "ERROR:from_id": 9999999999,
+   "text": "A text message straight to saved."
+  },
+  {
+   "id": 207958,
+   "type": "message",
+   "date": "2020-09-21T01:02:38",
+   "from": "Ben",
+   "from_id": 9999999999,
+   "file": "video_files/video_1@21-09-2020_01-02-38.mp4",
+   "thumbnail": "video_files/video_1@21-09-2020_01-02-38.mp4_thumb.jpg",
+   "media_type": "ERROR:media_type",
+   "mime_type": "video/mp4",
+   "duration_seconds": 2,
+   "width": 320,
+   "height": 266,
+   "text": ""
+  },
+  {
+   "id": 210087,
+   "type": "message",
+   "date": "2020-09-24T16:54:55",
+   "from": "Ben",
+   "from_id": 9999999999,
+   "forwarded_from": "Ben",
+   "saved_from": "Other Person",
+   "ERROR:text": "Message from myself to another person, then forwarded to saved"
+  },
+  {
+   "ERROR:id": 210743,
+   "type": "message",
+   "date": "2020-09-25T15:35:36",
+   "from": "Ben",
+   "from_id": 9999999999,
+   "text": "Ben, [1/1/70, 1:00 AM]\nMessage copied and pasted."
+  },
+  {
+   "ERROR": "service message but with message data",
+   "id": 217584,
+   "type": "service",
+   "date": "2020-10-06T00:33:06",
+   "from": "Ben",
+   "from_id": 9999999999,
+   "forwarded_from": "Other Person",
+   "saved_from": "Other Person",
+   "file": "voice_messages/audio_1@06-10-2020_00-33-06.ogg",
+   "media_type": "voice_message",
+   "mime_type": "audio/ogg",
+   "duration_seconds": 9,
+   "text": ""
+  },
+  {
+   "id": 225569,
+   "type": "message",
+   "date": "2020-10-15T10:28:10",
+   "from": "Ben",
+   "from_id": 9999999999,
+   "text": [
+    "Check out «Cat     ",
+    {
+     "type": "mention",
+     "text": "@farsisticker"
+    },
+    "» sticker set: ",
+    {
+     "type": "link",
+     "text": "https://t.me/addstickers/cat_farsi"
+    },
+    ""
+   ]
+  },
+  {
+   "id": 226106,
+   "type": "message",
+   "date": "2020-10-15T21:27:44",
+   "from": "Ben",
+   "from_id": 9999999999,
+   "via_bot": "@gif",
+   "file": "video_files/mp4.mp4",
+   "media_type": "animation",
+   "mime_type": "video/mp4",
+   "duration_seconds": 4,
+   "width": 186,
+   "height": 186,
+   "text": ""
+  },
+  {
+   "id": 233144,
+   "type": "message",
+   "date": "2020-10-25T13:04:16",
+   "from": "Ben",
+   "from_id": 9999999999,
+   "text": "\"quoted text\""
+  },
+  {
+   "id": 278329,
+   "type": "message",
+   "date": "2021-01-03T16:05:58",
+   "from": "Ben",
+   "from_id": 9999999999,
+   "file": "stickers/sticker.webp",
+   "thumbnail": "stickers/sticker.webp_thumb.jpg",
+   "media_type": "sticker",
+   "sticker_emoji": "🤭",
+   "width": 500,
+   "height": 512,
+   "text": ""
+  },
+  {
+   "id": 318170,
+   "type": "message",
+   "date": "2021-03-12T15:38:26",
+   "from": "Ben",
+   "from_id": 9999999999,
+   "forwarded_from": "Other Person",
+   "saved_from": "Other Person",
+   "file": "(File exceeds maximum size. Change data exporting settings to download.)",
+   "thumbnail": "(File exceeds maximum size. Change data exporting settings to download.)",
+   "media_type": "video_file",
+   "mime_type": "video/mp4",
+   "duration_seconds": 204,
+   "width": 416,
+   "height": 736,
+   "text": ""
+  },
+  {
+   "id": 319973,
+   "type": "message",
+   "date": "2021-03-15T16:42:45",
+   "from": "Ben",
+   "from_id": 9999999999,
+   "forwarded_from": "Other Person",
+   "saved_from": "Other Person",
+   "text": [
+    "Just some text with formatting like ",
+    {
+     "type": "bold",
+     "text": "bold text"
+    },
+    " some other text ",
+    {
+     "type": "italic",
+     "text": "italicized text"
+    },
+    " and\n\n",
+    {
+     "type": "underline",
+     "text": "underlined text"
+    },
+    {
+     "type": "strikethrough",
+     "text": "and strikethrough text"
+    },
+    ""
+   ]
+  },
+  {
+   "id": 323662,
+   "type": "message",
+   "date": "2021-03-21T18:20:17",
+   "from": "Ben",
+   "from_id": 9999999999,
+   "forwarded_from": "Other Person",
+   "saved_from": "Other Person",
+   "text": "- a list\n- with line breaks\n- three \n- four"
+  }
+ ]
+}

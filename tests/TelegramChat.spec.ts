@@ -9,6 +9,9 @@ chai.use(chaiLike);
 
 const ErrorJSON = fs.readFileSync('./tests/data/error.json', { encoding: 'utf8', flag: 'r' });
 
+const ErrorUnexpectedJSON = fs.readFileSync('./tests/data/error-unexpected.json', { encoding: 'utf8', flag: 'r' });
+const ErrorUnexpectedObj = JSON.parse(ErrorUnexpectedJSON);
+
 const BotJSON = fs.readFileSync('./tests/data/bot.json', { encoding: 'utf8', flag: 'r' });
 
 const PrivateGroupJSON = fs.readFileSync('./tests/data/private_group.json', { encoding: 'utf8', flag: 'r' });
@@ -20,6 +23,18 @@ describe('TelegramChat', () => {
   describe('when importing invalid json', () => {
     it('should throw an error', () => {
       expect(() => { new TelegramChat(ErrorJSON); }).to.throw();
+    });
+  });
+
+  describe('when importing valid json with unexpected data', () => {
+    const tg = new TelegramChat(ErrorUnexpectedJSON);
+    describe('and text is not a string or array', () => {
+      it('should return empty string', () => {
+        expect(tg.messages.find((msg) => msg.id === 176169)).to.be.an('object');
+        const res = tg.messages.find((msg) => msg.id === 176169);
+        expect(res).to.not.be.undefined;
+        if (res !== undefined) expect(res.text).to.equal('');
+      });
     });
   });
 
