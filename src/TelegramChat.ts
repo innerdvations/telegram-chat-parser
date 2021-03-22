@@ -33,7 +33,7 @@ export default class TelegramChat {
   }
 
   public get isGroup():boolean {
-    return this.type === ChatTypes.Bot;
+    return this.type === ChatTypes.PrivateGroup || this.type === ChatTypes.PublicSupergroup;
   }
 
   public get id():number {

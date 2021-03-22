@@ -1,0 +1,48 @@
+{
+ "name": "test",
+ "type": "public_supergroup",
+ "id": 9888888888,
+ "messages": [
+  {
+   "id": -999678450,
+   "type": "service",
+   "date": "2021-03-18T15:20:24",
+   "actor": "Ben",
+   "actor_id": 9999999999,
+   "action": "create_group",
+   "title": "test",
+   "members": [
+    "Ben",
+    "BenBot"
+   ],
+   "text": ""
+  },
+  {
+   "id": -999678449,
+   "type": "message",
+   "date": "2021-03-18T15:20:37",
+   "from": "Ben",
+   "from_id": 9999999999,
+   "text": "asdsf"
+  },
+  {
+   "id": -999675685,
+   "type": "service",
+   "date": "2021-03-22T15:56:27",
+   "actor": "Ben",
+   "actor_id": 9999999999,
+   "action": "migrate_to_supergroup",
+   "text": ""
+  },
+  {
+   "id": 1,
+   "type": "service",
+   "date": "2021-03-22T15:56:27",
+   "actor": "test",
+   "actor_id": 9999999999,
+   "action": "migrate_from_group",
+   "title": "test",
+   "text": ""
+  }
+ ]
+}

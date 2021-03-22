@@ -4,15 +4,18 @@ import * as fs from 'fs';
 import chaiLike from 'chai-like';
 import { TelegramChat } from '../src';
 
+chai.use(chaiLike);
+
 const ErrorJSON = fs.readFileSync('./tests/data/error.json', { encoding: 'utf8', flag: 'r' });
 
-const SimpleBotJSON = fs.readFileSync('./tests/data/simple-bot.json', { encoding: 'utf8', flag: 'r' });
-const SimpleBotObj = JSON.parse(SimpleBotJSON);
+const BotJSON = fs.readFileSync('./tests/data/bot.json', { encoding: 'utf8', flag: 'r' });
+const BotObj = JSON.parse(BotJSON);
 
-const SimpleGroupJSON = fs.readFileSync('./tests/data/simple-bot.json', { encoding: 'utf8', flag: 'r' });
-const SimpleGroupObj = JSON.parse(SimpleGroupJSON);
+const PrivateGroupJSON = fs.readFileSync('./tests/data/private_group.json', { encoding: 'utf8', flag: 'r' });
+const PrivateGroupObj = JSON.parse(PrivateGroupJSON);
 
-chai.use(chaiLike);
+const SavedJSON = fs.readFileSync('./tests/data/saved.json', { encoding: 'utf8', flag: 'r' });
+const SavedObj = JSON.parse(SavedJSON);
 
 describe('TelegramChat', () => {
   describe('when importing invalid json', () => {
@@ -21,33 +24,36 @@ describe('TelegramChat', () => {
     });
   });
 
-  describe('when importing private group chat json', () => {
-    const tg = new TelegramChat(SimpleGroupJSON);
+  describe('when private group chat json is imported', () => {
+    const tg = new TelegramChat(PrivateGroupJSON);
     it('should have correct id', () => {
-      expect(tg.id).to.equal(SimpleGroupObj.id);
+      expect(tg.id).to.equal(PrivateGroupObj.id);
     });
     it('should have correct type', () => {
-      expect(tg.type).to.equal(SimpleGroupObj.type);
+      expect(tg.type).to.equal(PrivateGroupObj.type);
     });
     it('should have correct name', () => {
-      expect(tg.name).to.equal(SimpleGroupObj.name);
+      expect(tg.name).to.equal(PrivateGroupObj.name);
     });
     it('isGroup should be true', () => {
       expect(tg.isGroup).to.be.true;
     });
+    it('isBot should be false', () => {
+      expect(tg.isBot).to.be.false;
+    });
   });
 
   describe('when importing bot chat json', () => {
-    const tg = new TelegramChat(SimpleBotJSON);
+    const tg = new TelegramChat(BotJSON);
 
     it('should have correct id', () => {
-      expect(tg.id).to.equal(SimpleBotObj.id);
+      expect(tg.id).to.equal(BotObj.id);
     });
     it('should have correct type', () => {
-      expect(tg.type).to.equal(SimpleBotObj.type);
+      expect(tg.type).to.equal(BotObj.type);
     });
     it('should have correct name', () => {
-      expect(tg.name).to.equal(SimpleBotObj.name);
+      expect(tg.name).to.equal(BotObj.name);
     });
     it('isBot should be true', () => {
       expect(tg.isBot).to.be.true;
@@ -55,12 +61,12 @@ describe('TelegramChat', () => {
 
     describe('messages', () => {
       it('should all exist', () => {
-        expect(tg.messages).to.have.length(SimpleBotObj.messages.length);
+        expect(tg.messages).to.have.length(BotObj.messages.length);
       });
 
       describe('source data', () => {
         it('should be retrievable by key', () => {
-          expect(tg.messages[0].src('type')).to.equal(SimpleBotObj.messages[0].type);
+          expect(tg.messages[0].src('type')).to.equal(BotObj.messages[0].type);
         });
       });
 
@@ -78,8 +84,8 @@ describe('TelegramChat', () => {
           expect(tg.messages[0].user)
             .to.be.like(
               {
-                id: SimpleBotObj.messages[0].from_id,
-                name: SimpleBotObj.messages[0].from,
+                id: BotObj.messages[0].from_id,
+                name: BotObj.messages[0].from,
               },
             );
         });

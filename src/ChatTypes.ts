@@ -1,6 +1,7 @@
 export default {
   Bot: 'bot_chat',
-  Group: 'private_group',
+  PrivateGroup: 'private_group',
+  PublicSupergroup: 'public_supergroup',
   Personal: 'personal_chat',
   Saved: 'saved_messages',
 };

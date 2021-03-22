@@ -1,5 +1,5 @@
 {
     "extension": ["ts", "json", "js"],
-    "spec": ["src/**/*.spec.ts", "tests/**/*.spec.ts"],
+    "spec": ["tests/**/*.spec.ts"],
     "bail": true
 }
