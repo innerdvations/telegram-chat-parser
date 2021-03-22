@@ -9,10 +9,8 @@ chai.use(chaiLike);
 const ErrorJSON = fs.readFileSync('./tests/data/error.json', { encoding: 'utf8', flag: 'r' });
 
 const BotJSON = fs.readFileSync('./tests/data/bot.json', { encoding: 'utf8', flag: 'r' });
-const BotObj = JSON.parse(BotJSON);
 
 const PrivateGroupJSON = fs.readFileSync('./tests/data/private_group.json', { encoding: 'utf8', flag: 'r' });
-const PrivateGroupObj = JSON.parse(PrivateGroupJSON);
 
 const SavedJSON = fs.readFileSync('./tests/data/saved.json', { encoding: 'utf8', flag: 'r' });
 const SavedObj = JSON.parse(SavedJSON);
