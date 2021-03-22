@@ -1,0 +1,28 @@
+{
+  "name": "Bot User",
+  "type": "bot_chat",
+  "id": 9999999999
+  "messages": [
+   {
+    "id": 223690,
+    "type": "message",
+    "date": "2020-10-13T23:31:04",
+    "from": "Bot User",
+    "from_id": 8888888888,
+    "text": [
+     {
+      "type": "bot_command",
+      "text": "/start"
+     }
+    ]
+   },
+   {
+    "id": 223691,
+    "type": "message",
+    "date": "2020-10-13T23:31:05",
+    "from": "Real User",
+    "from_id": 9999999999,
+    "text": "This is a sample message."
+   }
+  ]
+}
