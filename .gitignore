@@ -14,6 +14,7 @@ tmp
 bin
 coverage
 .nyc_output
+**/.data
 
 # API keys and secrets
 .env
