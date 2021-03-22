@@ -1,25 +1,29 @@
 import TelegramMessage from './TelegramMessage';
 
 export default class TelegramChat {
-  private _contents:ChatExport;
   private _messages:TelegramMessage[] = [];
   private _name = '';
   private _type = '';
+  private _id = 0;
 
+  // TODO: it's possible that there are other fields, allow for this class to act as a dictionary
   constructor(input:string) {
-    this._contents = JSON.parse(input);
-    if (!this._contents) throw new Error('JSON parse error');
-    this.parseContents();
+    const content = JSON.parse(input);
+    if (!content) throw new Error('JSON parse error');
+    this._name = content.name;
+    this._id = content.id;
+    this._type = content.type;
+    this.parseContents(content);
   }
 
-  private parseContents():void {
-    this._contents.messages.forEach((exp:MessageExport) => {
+  parseContents(contents:ChatExport):void {
+    contents.messages.forEach((exp:ExportedMessage) => {
       this._messages.push(new TelegramMessage(exp));
     });
   }
 
   public get id():number {
-    return this._contents.id;
+    return this._id;
   }
 
   public get name():string {

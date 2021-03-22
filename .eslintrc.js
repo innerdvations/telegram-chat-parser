@@ -15,6 +15,7 @@ module.exports = {
     },
     rules: {
       'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+      '@typescript-eslint/no-unused-expressions': 'off',
       'no-unused-expressions': 'off',
     },
     files: ['src/**/*.spec.ts', 'src/**/*.test.ts', 'tests/**/*.ts'],

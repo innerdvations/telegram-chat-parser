@@ -45,49 +45,28 @@ See  for more detailed descriptions.
     // Unique chat identifier
     id: number;
 
-    // From Telegram. Seems to always be "message"
-    typeSrc: String;
-
     // Message type based on content
     type: String;
 
-    // Original date string in ISO-8601 format "2020-10-13T23:31:04"
-    dateSrc: String;
-
-    // ...parsed as a Moment object (used internally)
+    // Moment object holding date
     dateMoment: Moment;
 
-    // ...parsed as a Date object
+    // ...returned as a Date object
     date: Date;
-
-    // original "from" string from Telegram
-    fromSrc: String;
-
-    // original "from_id" string from Telegram
-    fromId: number;
 
     // all available data for this user converted into a TelegramUser object
     from: TelegramUser;
 
-    // "text" from Telegram
-    textSrc: String | [String|Unknown];
-
-    // ...converted into a plain text string without formatting or links
-    text: String;
-
-    // ...converted into a string of html retaining formatting
-    textHtml: String; 
-
-    // ...converted into a string of markdown retaining formatting
-    textMarkdown: String;
+    // message text converted into a string instead of string|object[]
+    text(options:TextOptions): String;
 }
 ```
 
-#### type
+#### TelegramMessage type
 
-The "type" property found in the exported message object seems to always be "message" regardless of contents (although if you know of cases when Telegram exports a different value, please submit an issue describing it so it can be taken into account).
+The `type` property found in the exported message object is either `message` or `service`.
 
-This module looks at the contents of the message and attempts to determine which of the following types of message it is:
+Instead, this module looks at the contents of the message and attempts to determines to determine what type of message it is, based on the message type used by the Telegram Bot API, one of the following values:
 
 - text
 - image
@@ -97,6 +76,8 @@ This module looks at the contents of the message and attempts to determine which
 - animation
 - button
 - keyboard
+
+`isService` can be used to check if a message was a service message.
 
 ### TelegramUser
 
