@@ -1,0 +1,108 @@
+{
+ "name": "test",
+ "type": "public_channel",
+ "id": 10036995664,
+ "messages": [
+  {
+   "id": 1,
+   "type": "service",
+   "date": "2021-03-22T17:06:53",
+   "actor": "test",
+   "actor_id": 10036995664,
+   "action": "create_channel",
+   "title": "test",
+   "text": ""
+  },
+  {
+   "id": 2,
+   "type": "message",
+   "date": "2021-03-22T17:16:36",
+   "from": "test",
+   "from_id": 10036995664,
+   "text": "test channel"
+  },
+  {
+   "id": 3,
+   "type": "message",
+   "date": "2021-03-22T17:16:41",
+   "from": "test",
+   "from_id": 10036995664,
+   "reply_to_message_id": 2,
+   "text": "reply in test channel"
+  },
+  {
+   "id": 4,
+   "type": "service",
+   "date": "2021-03-22T17:16:54",
+   "actor": "test",
+   "actor_id": 10036995664,
+   "action": "pin_message",
+   "message_id": 3,
+   "text": ""
+  },
+  {
+   "id": 5,
+   "type": "message",
+   "date": "2021-03-22T17:17:29",
+   "from": "test",
+   "from_id": 10036995664,
+   "poll": {
+    "question": "Poll question",
+    "closed": false,
+    "total_voters": 1,
+    "answers": [
+     {
+      "text": "option 1",
+      "voters": 1,
+      "chosen": true
+     },
+     {
+      "text": "option 2",
+      "voters": 0,
+      "chosen": false
+     }
+    ]
+   },
+   "text": ""
+  },
+  {
+   "id": 6,
+   "type": "message",
+   "date": "2021-03-22T17:17:57",
+   "from": "test",
+   "from_id": 10036995664,
+   "poll": {
+    "question": "quiz poll",
+    "closed": false,
+    "total_voters": 1,
+    "answers": [
+     {
+      "text": "option 1",
+      "voters": 1,
+      "chosen": true
+     },
+     {
+      "text": "option 2",
+      "voters": 0,
+      "chosen": false
+     },
+     {
+      "text": "option 3",
+      "voters": 0,
+      "chosen": false
+     }
+    ]
+   },
+   "text": ""
+  },
+  {
+   "id": 7,
+   "type": "message",
+   "date": "2021-03-22T17:18:09",
+   "from": "test",
+   "from_id": 10036995664,
+   "reply_to_message_id": 6,
+   "text": "reply to quiz"
+  }
+ ]
+}

@@ -29,15 +29,23 @@ export default class TelegramChat {
   }
 
   public get isBot():boolean {
-    return this.type === ChatTypes.Bot;
+    return this.type === ChatTypes.BotChat;
+  }
+
+  public get isPublic():boolean {
+    return this.type === ChatTypes.PublicSupergroup || this.type === ChatTypes.PublicChannel;
   }
 
   public get isGroup():boolean {
     return this.type === ChatTypes.PrivateGroup || this.type === ChatTypes.PublicSupergroup;
   }
 
-  public get isSaved():boolean {
-    return this.type === ChatTypes.Saved;
+  public get isSavedMessages():boolean {
+    return this.type === ChatTypes.SavedMessages;
+  }
+
+  public get isChannel():boolean {
+    return this.type === ChatTypes.PrivateChannel || this.type === ChatTypes.PublicChannel;
   }
 
   public get id():number {

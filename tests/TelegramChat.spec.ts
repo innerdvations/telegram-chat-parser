@@ -38,6 +38,9 @@ describe('TelegramChat', () => {
       it('should all exist', () => {
         expect(tg.messages).to.have.length(SavedObj.messages.length);
       });
+      it('should contain their source data', () => {
+        expect(tg.messages[0].data).to.eql(SavedObj.messages[0]);
+      });
 
       describe('source data', () => {
         it('should be retrievable by key', () => {
@@ -77,7 +80,13 @@ describe('TelegramChat', () => {
       expect(tg.isBot).to.be.false;
     });
     it('isSaved should be true', () => {
-      expect(tg.isSaved).to.be.true;
+      expect(tg.isSavedMessages).to.be.true;
+    });
+    it('isGroup should be false', () => {
+      expect(tg.isGroup).to.be.false;
+    });
+    it('isChannel should be false', () => {
+      expect(tg.isChannel).to.be.false;
     });
   });
 
@@ -90,7 +99,13 @@ describe('TelegramChat', () => {
       expect(tg.isBot).to.be.false;
     });
     it('isSaved should be false', () => {
-      expect(tg.isSaved).to.be.false;
+      expect(tg.isSavedMessages).to.be.false;
+    });
+    it('isGroup should be true', () => {
+      expect(tg.isGroup).to.be.true;
+    });
+    it('isChannel should be false', () => {
+      expect(tg.isChannel).to.be.false;
     });
   });
 
@@ -103,7 +118,13 @@ describe('TelegramChat', () => {
       expect(tg.isBot).to.be.true;
     });
     it('isSaved should be false', () => {
-      expect(tg.isSaved).to.be.false;
+      expect(tg.isSavedMessages).to.be.false;
+    });
+    it('isGroup should be false', () => {
+      expect(tg.isGroup).to.be.false;
+    });
+    it('isChannel should be false', () => {
+      expect(tg.isChannel).to.be.false;
     });
   });
 });
