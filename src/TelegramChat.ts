@@ -1,10 +1,11 @@
-import TelegramMessage from './TelegramMessage';
+import { TelegramUser, TelegramMessage } from '.';
 
 export default class TelegramChat {
   private _messages:TelegramMessage[] = [];
   private _name = '';
   private _type = '';
   private _id = 0;
+  private _users:Record<string, TelegramUser> = {};
 
   // TODO: it's possible that there are other fields, allow for this class to act as a dictionary
   constructor(input:string) {
@@ -18,7 +19,12 @@ export default class TelegramChat {
 
   parseContents(contents:ChatExport):void {
     contents.messages.forEach((exp:ExportedMessage) => {
-      this._messages.push(new TelegramMessage(exp));
+      const id = Number(exp.from_id);
+      let u = this._users[id];
+      if (u === undefined) {
+        u = new TelegramUser(id, String(exp.from));
+      }
+      this._messages.push(new TelegramMessage(exp, u));
     });
   }
 

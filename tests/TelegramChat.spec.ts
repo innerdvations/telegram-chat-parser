@@ -1,11 +1,14 @@
 /* eslint-disable no-new */
-import { expect } from 'chai';
+import chai, { expect } from 'chai';
 import * as fs from 'fs';
-import TelegramChat from '../src/TelegramChat';
+import chaiLike from 'chai-like';
+import { TelegramChat } from '../src';
 
 const ErrorJSON = fs.readFileSync('./tests/data/simple-bot.json', { encoding: 'utf8', flag: 'r' });
 const SimpleBotJSON = fs.readFileSync('./tests/data/simple-bot.json', { encoding: 'utf8', flag: 'r' });
 const SimpleBotObj = JSON.parse(SimpleBotJSON);
+
+chai.use(chaiLike);
 
 describe('TelegramChat', () => {
   describe('when importing invalid json', () => {
@@ -44,6 +47,18 @@ describe('TelegramChat', () => {
         });
         it('should return object message text as string', () => {
           expect(tg.messages[0].text).to.equal('/start');
+        });
+      });
+
+      describe('user', () => {
+        it('should return user object', () => {
+          expect(tg.messages[0].user)
+            .to.be.like(
+              {
+                id: SimpleBotObj.messages[0].from_id,
+                name: SimpleBotObj.messages[0].from,
+              },
+            );
         });
       });
     });
