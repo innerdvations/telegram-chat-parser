@@ -36,6 +36,10 @@ export default class TelegramChat {
     return this.type === ChatTypes.PrivateGroup || this.type === ChatTypes.PublicSupergroup;
   }
 
+  public get isSaved():boolean {
+    return this.type === ChatTypes.Saved;
+  }
+
   public get id():number {
     return this._id;
   }

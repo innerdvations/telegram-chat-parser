@@ -24,58 +24,35 @@ describe('TelegramChat', () => {
     });
   });
 
-  describe('when private group chat json is imported', () => {
-    const tg = new TelegramChat(PrivateGroupJSON);
+  describe('when a chat json is imported', () => {
+    const tg = new TelegramChat(SavedJSON);
     it('should have correct id', () => {
-      expect(tg.id).to.equal(PrivateGroupObj.id);
+      expect(tg.id).to.equal(SavedObj.id);
     });
     it('should have correct type', () => {
-      expect(tg.type).to.equal(PrivateGroupObj.type);
+      expect(tg.type).to.equal(SavedObj.type);
     });
     it('should have correct name', () => {
-      expect(tg.name).to.equal(PrivateGroupObj.name);
-    });
-    it('isGroup should be true', () => {
-      expect(tg.isGroup).to.be.true;
-    });
-    it('isBot should be false', () => {
-      expect(tg.isBot).to.be.false;
-    });
-  });
-
-  describe('when importing bot chat json', () => {
-    const tg = new TelegramChat(BotJSON);
-
-    it('should have correct id', () => {
-      expect(tg.id).to.equal(BotObj.id);
-    });
-    it('should have correct type', () => {
-      expect(tg.type).to.equal(BotObj.type);
-    });
-    it('should have correct name', () => {
-      expect(tg.name).to.equal(BotObj.name);
-    });
-    it('isBot should be true', () => {
-      expect(tg.isBot).to.be.true;
+      expect(tg.name).to.equal(SavedObj.name);
     });
 
     describe('messages', () => {
       it('should all exist', () => {
-        expect(tg.messages).to.have.length(BotObj.messages.length);
+        expect(tg.messages).to.have.length(SavedObj.messages.length);
       });
 
       describe('source data', () => {
         it('should be retrievable by key', () => {
-          expect(tg.messages[0].src('type')).to.equal(BotObj.messages[0].type);
+          expect(tg.messages[0].src('type')).to.equal(SavedObj.messages[0].type);
         });
       });
 
       describe('text', () => {
         it('should return text message text as string', () => {
-          expect(tg.messages[1].text).to.equal('This is a sample message.');
+          expect(tg.messages[0].text).to.equal(SavedObj.messages[0].text);
         });
-        it('should return object message text as string', () => {
-          expect(tg.messages[0].text).to.equal('/start');
+        it('should return mixed object/text message text as string', () => {
+          expect(tg.messages[1].text).to.equal('1234567');
         });
       });
 
@@ -84,12 +61,51 @@ describe('TelegramChat', () => {
           expect(tg.messages[0].user)
             .to.be.like(
               {
-                id: BotObj.messages[0].from_id,
-                name: BotObj.messages[0].from,
+                id: SavedObj.messages[0].from_id,
+                name: SavedObj.messages[0].from,
               },
             );
         });
       });
+    });
+  });
+
+  describe('when saved chat json is imported', () => {
+    const tg = new TelegramChat(SavedJSON);
+    it('isGroup should be false', () => {
+      expect(tg.isGroup).to.be.false;
+    });
+    it('isBot should be false', () => {
+      expect(tg.isBot).to.be.false;
+    });
+    it('isSaved should be true', () => {
+      expect(tg.isSaved).to.be.true;
+    });
+  });
+
+  describe('when private group chat json is imported', () => {
+    const tg = new TelegramChat(PrivateGroupJSON);
+    it('isGroup should be true', () => {
+      expect(tg.isGroup).to.be.true;
+    });
+    it('isBot should be false', () => {
+      expect(tg.isBot).to.be.false;
+    });
+    it('isSaved should be false', () => {
+      expect(tg.isSaved).to.be.false;
+    });
+  });
+
+  describe('when importing bot chat json', () => {
+    const tg = new TelegramChat(BotJSON);
+    it('isGroup should be false', () => {
+      expect(tg.isGroup).to.be.false;
+    });
+    it('isBot should be true', () => {
+      expect(tg.isBot).to.be.true;
+    });
+    it('isSaved should be false', () => {
+      expect(tg.isSaved).to.be.false;
     });
   });
 });

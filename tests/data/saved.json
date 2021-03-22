@@ -11,7 +11,36 @@
    "photo": "photos/photo_1@01-08-2020_22-01-49.jpg",
    "width": 904,
    "height": 1280,
-   "text": "I'm a message sent straight to saved."
+   "text": "I'm a photo message sent straight to saved."
+  },
+  {
+   "id": 173429,
+   "type": "message",
+   "date": "2020-08-01T22:01:49",
+   "from": "Ben",
+   "from_id": 9999999999,
+   "text": [
+    "1",
+    {
+     "type": "bold",
+     "text": "2"
+    },
+    "3",
+    {
+     "type": "italic",
+     "text": "4"
+    },
+    "5",
+    {
+     "type": "underline",
+     "text": "6"
+    },
+    {
+     "type": "strikethrough",
+     "text": "7"
+    },
+    ""
+   ]
   },
   {
    "id": 176169,
@@ -185,7 +214,7 @@
      "type": "italic",
      "text": "italicized text"
     },
-    ": Washington, DC and NYC, but would possibly consider Boston \n\n",
+    " and\n\n",
     {
      "type": "underline",
      "text": "underlined text"
