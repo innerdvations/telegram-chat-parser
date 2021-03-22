@@ -41,6 +41,9 @@ describe('TelegramChat', () => {
       it('should contain their source data', () => {
         expect(tg.messages[0].data).to.eql(SavedObj.messages[0]);
       });
+      it('should return the correct id', () => {
+        expect(tg.messages[0].id).to.eql(SavedObj.messages[0].id);
+      });
 
       describe('source data', () => {
         it('should be retrievable by key', () => {
