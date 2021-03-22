@@ -3,4 +3,5 @@
 export { default as TelegramChat } from './TelegramChat';
 export { default as TelegramMessage } from './TelegramMessage';
 export { default as TelegramUser } from './TelegramUser';
-export { default as ChatTypes } from './ChatTypes';
+export { default as ChatType } from './ChatType';
+export { default as ContentType } from './ContentType';

@@ -18,14 +18,6 @@ type ChatExport = {
   messages:ExportedMessage[];
 };
 
-type ContentType =
-  'text' | 'image' |
-  'audio' | 'video' |
-  'file' | 'animation' |
-  'button' | 'keyboard' |
-  'voice_message' | 'sticker' |
-  'video_file';
-
 type ExportedText = string | [TextObject];
 
 // TODO: replace 'any' with type from Telegram schemas

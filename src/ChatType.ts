@@ -1,4 +1,4 @@
-enum ChatTypes {
+enum ChatType {
   BotChat = 'bot_chat',
   PrivateGroup = 'private_group',
   PublicSupergroup = 'public_supergroup',
@@ -8,4 +8,4 @@ enum ChatTypes {
   PublicChannel = 'public_channel',
 }
 
-export default ChatTypes;
+export default ChatType;

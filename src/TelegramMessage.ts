@@ -1,5 +1,5 @@
 import moment, { Moment } from 'moment';
-import { TelegramUser } from '.';
+import { ContentType, TelegramUser } from '.';
 
 export default class TelegramMessage {
   private _data:ExportedMessage;
@@ -39,19 +39,24 @@ export default class TelegramMessage {
   // - sticker
   // - video_file
   // - voice_message
+  // - poll
   // eslint-disable-next-line class-methods-use-this
   get contentType():ContentType {
     if (this.data.photo !== null && typeof this.data.photo === 'string') {
-      return 'image';
+      return ContentType.Image;
     }
-    if (this.data.media_type !== null && typeof this.data.media_type === 'string') {
-      if (this.data.media_type === 'animation') return 'animation';
-      if (this.data.media_type === 'voice_message') return 'voice_message';
-      if (this.data.media_type === 'sticker') return 'sticker';
-      if (this.data.media_type === 'video_file') return 'video_file';
+    if (this.data.poll !== null) {
+      return ContentType.Poll;
     }
 
-    return 'text';
+    // Search contentType for media_type
+    if (this.data.media_type !== null && typeof this.data.media_type === 'string') {
+      if (Object.values(ContentType).includes(this.data.media_type as ContentType)) {
+        return this.data.media_type as ContentType;
+      }
+    }
+
+    return ContentType.Text;
   }
 
   get date():Date {
