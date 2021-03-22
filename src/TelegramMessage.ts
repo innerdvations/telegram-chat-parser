@@ -37,25 +37,23 @@ export default class TelegramMessage {
   // - button
   // - keyboard
   // - sticker
-  // - video_file
   // - voice_message
   // - poll
   // eslint-disable-next-line class-methods-use-this
   get contentType():ContentType {
-    if (this.data.photo !== null && typeof this.data.photo === 'string') {
+    if (this.data.photo !== undefined) {
       return ContentType.Image;
     }
-    if (this.data.poll !== null) {
+    if (this.data.poll !== undefined) {
       return ContentType.Poll;
     }
 
     // Search contentType for media_type
-    if (this.data.media_type !== null && typeof this.data.media_type === 'string') {
-      if (Object.values(ContentType).includes(this.data.media_type as ContentType)) {
-        return this.data.media_type as ContentType;
-      }
+    if (this.data.media_type !== null && typeof this.data.media_type === 'string' && Object.values(ContentType).includes(this.data.media_type as ContentType)) {
+      return this.data.media_type as ContentType;
     }
 
+    // If none of the above types were found, it's just text
     return ContentType.Text;
   }
 

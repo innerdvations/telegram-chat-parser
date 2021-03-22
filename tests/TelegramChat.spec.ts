@@ -117,6 +117,22 @@ describe('TelegramChat', () => {
         });
       });
     });
+
+    describe('when content type is text', () => {
+      const msgImage = tg.messages.find((msg) => msg.id === 183290) as TelegramMessage;
+
+      it('should have contentType of text', () => {
+        expect(msgImage.contentType).to.equal(ContentType.Text);
+      });
+    });
+
+    describe('when content type is video', () => {
+      const msgImage = tg.messages.find((msg) => msg.id === 318170) as TelegramMessage;
+
+      it('should have contentType of video', () => {
+        expect(msgImage.contentType).to.equal(ContentType.Video);
+      });
+    });
   });
 
   describe('when saved chat json is imported', () => {
