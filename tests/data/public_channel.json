@@ -1,14 +1,14 @@
 {
  "name": "test",
  "type": "public_channel",
- "id": 10036995664,
+ "id": 44444444444,
  "messages": [
   {
    "id": 1,
    "type": "service",
    "date": "2021-03-22T17:06:53",
    "actor": "test",
-   "actor_id": 10036995664,
+   "actor_id": 44444444444,
    "action": "create_channel",
    "title": "test",
    "text": ""
@@ -18,7 +18,7 @@
    "type": "message",
    "date": "2021-03-22T17:16:36",
    "from": "test",
-   "from_id": 10036995664,
+   "from_id": 44444444444,
    "text": "test channel"
   },
   {
@@ -26,7 +26,7 @@
    "type": "message",
    "date": "2021-03-22T17:16:41",
    "from": "test",
-   "from_id": 10036995664,
+   "from_id": 44444444444,
    "reply_to_message_id": 2,
    "text": "reply in test channel"
   },
@@ -35,7 +35,7 @@
    "type": "service",
    "date": "2021-03-22T17:16:54",
    "actor": "test",
-   "actor_id": 10036995664,
+   "actor_id": 44444444444,
    "action": "pin_message",
    "message_id": 3,
    "text": ""
@@ -45,7 +45,7 @@
    "type": "message",
    "date": "2021-03-22T17:17:29",
    "from": "test",
-   "from_id": 10036995664,
+   "from_id": 44444444444,
    "poll": {
     "question": "Poll question",
     "closed": false,
@@ -70,7 +70,7 @@
    "type": "message",
    "date": "2021-03-22T17:17:57",
    "from": "test",
-   "from_id": 10036995664,
+   "from_id": 44444444444,
    "poll": {
     "question": "quiz poll",
     "closed": false,
@@ -100,7 +100,7 @@
    "type": "message",
    "date": "2021-03-22T17:18:09",
    "from": "test",
-   "from_id": 10036995664,
+   "from_id": 44444444444,
    "reply_to_message_id": 6,
    "text": "reply to quiz"
   }
