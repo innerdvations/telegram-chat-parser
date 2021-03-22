@@ -37,6 +37,15 @@ describe('TelegramChat', () => {
           expect(tg.messages[0].src('type')).to.equal(SimpleBotObj.messages[0].type);
         });
       });
+
+      describe('text', () => {
+        it('should return text message text as string', () => {
+          expect(tg.messages[1].text).to.equal('This is a sample message.');
+        });
+        it('should return object message text as string', () => {
+          expect(tg.messages[0].text).to.equal('/start');
+        });
+      });
     });
   });
 });

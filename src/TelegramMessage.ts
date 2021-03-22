@@ -3,9 +3,6 @@ import moment, { Moment } from 'moment';
 export default class TelegramMessage {
   private _data:ExportedMessage;
   private _date:Moment;
-  private _text:string | null = null;
-  private _html:string | null = null;
-  private _markdown:string | null = null;
 
   constructor(exp:ExportedMessage) {
     this._data = exp;
@@ -38,6 +35,14 @@ export default class TelegramMessage {
   }
 
   get text():string {
-    return String(this._text);
+    const raw:unknown = this._data.text;
+    if (typeof raw === 'string') return raw;
+
+    if (Array.isArray(raw)) {
+      const text = raw.map((obj:Record<string, unknown>):string => String(obj.text)).join('');
+      return text;
+    }
+
+    return '';
   }
 }
