@@ -16,6 +16,8 @@ const BotJSON = fs.readFileSync('./tests/data/bot.json', { encoding: 'utf8', fla
 
 const PrivateGroupJSON = fs.readFileSync('./tests/data/private_group.json', { encoding: 'utf8', flag: 'r' });
 
+const PublicSupergroupJSON = fs.readFileSync('./tests/data/public_supergroup.json', { encoding: 'utf8', flag: 'r' });
+
 const SavedJSON = fs.readFileSync('./tests/data/saved.json', { encoding: 'utf8', flag: 'r' });
 const SavedObj = JSON.parse(SavedJSON);
 
@@ -28,6 +30,7 @@ describe('TelegramChat', () => {
 
   describe('when importing valid json with unexpected data', () => {
     const tg = new TelegramChat(ErrorUnexpectedJSON);
+
     describe('and text is not a string or array', () => {
       it('should return empty string', () => {
         expect(tg.messages.find((msg) => msg.id === 176169)).to.be.an('object');
@@ -40,6 +43,7 @@ describe('TelegramChat', () => {
 
   describe('when a chat json is imported', () => {
     const tg = new TelegramChat(SavedJSON);
+
     it('should have correct id', () => {
       expect(tg.id).to.equal(SavedObj.id);
     });
@@ -98,6 +102,7 @@ describe('TelegramChat', () => {
 
   describe('when saved chat json is imported', () => {
     const tg = new TelegramChat(SavedJSON);
+
     it('isGroup should be false', () => {
       expect(tg.isGroup).to.be.false;
     });
@@ -107,16 +112,17 @@ describe('TelegramChat', () => {
     it('isSaved should be true', () => {
       expect(tg.isSavedMessages).to.be.true;
     });
-    it('isGroup should be false', () => {
-      expect(tg.isGroup).to.be.false;
-    });
     it('isChannel should be false', () => {
       expect(tg.isChannel).to.be.false;
+    });
+    it('isPublic should be false', () => {
+      expect(tg.isPublic).to.be.false;
     });
   });
 
   describe('when private group chat json is imported', () => {
     const tg = new TelegramChat(PrivateGroupJSON);
+
     it('isGroup should be true', () => {
       expect(tg.isGroup).to.be.true;
     });
@@ -126,16 +132,37 @@ describe('TelegramChat', () => {
     it('isSaved should be false', () => {
       expect(tg.isSavedMessages).to.be.false;
     });
+    it('isChannel should be false', () => {
+      expect(tg.isChannel).to.be.false;
+    });
+    it('isPublic should be false', () => {
+      expect(tg.isPublic).to.be.false;
+    });
+  });
+
+  describe('when public supergroup json is imported', () => {
+    const tg = new TelegramChat(PublicSupergroupJSON);
+
     it('isGroup should be true', () => {
       expect(tg.isGroup).to.be.true;
     });
+    it('isBot should be false', () => {
+      expect(tg.isBot).to.be.false;
+    });
+    it('isSaved should be false', () => {
+      expect(tg.isSavedMessages).to.be.false;
+    });
     it('isChannel should be false', () => {
       expect(tg.isChannel).to.be.false;
+    });
+    it('isPublic should be true', () => {
+      expect(tg.isPublic).to.be.true;
     });
   });
 
   describe('when importing bot chat json', () => {
     const tg = new TelegramChat(BotJSON);
+
     it('isGroup should be false', () => {
       expect(tg.isGroup).to.be.false;
     });
@@ -145,11 +172,11 @@ describe('TelegramChat', () => {
     it('isSaved should be false', () => {
       expect(tg.isSavedMessages).to.be.false;
     });
-    it('isGroup should be false', () => {
-      expect(tg.isGroup).to.be.false;
-    });
     it('isChannel should be false', () => {
       expect(tg.isChannel).to.be.false;
+    });
+    it('isPublic should be false', () => {
+      expect(tg.isPublic).to.be.false;
     });
   });
 });
