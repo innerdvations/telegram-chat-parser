@@ -1,4 +1,4 @@
-import { TelegramUser, TelegramMessage } from '.';
+import { TelegramUser, TelegramMessage, ChatTypes } from '.';
 
 export default class TelegramChat {
   private _messages:TelegramMessage[] = [];
@@ -26,6 +26,10 @@ export default class TelegramChat {
       }
       this._messages.push(new TelegramMessage(exp, u));
     });
+  }
+
+  public get isBot():boolean {
+    return this.type === ChatTypes.Bot;
   }
 
   public get id():number {

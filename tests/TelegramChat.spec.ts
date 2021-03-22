@@ -29,6 +29,9 @@ describe('TelegramChat', () => {
     it('should have correct name', () => {
       expect(tg.name).to.equal(SimpleBotObj.name);
     });
+    it('isBot should be true', () => {
+      expect(tg.isBot).to.be.true;
+    });
 
     describe('messages', () => {
       it('should all exist', () => {
