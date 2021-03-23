@@ -6,8 +6,10 @@ export default class TelegramChat {
   private _type:ChatType;
   private _id = 0;
   private _users:Record<string, TelegramUser> = {};
+  static Defaults:MessageOptions = {
+    includeStickersAsEmoji: false,
+  };
 
-  // TODO: it's possible that there are other fields, allow for this class to act as a dictionary
   constructor(input:string) {
     const content = JSON.parse(input);
     // istanbul ignore next
