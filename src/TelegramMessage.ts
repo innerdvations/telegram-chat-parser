@@ -82,7 +82,7 @@ export default class TelegramMessage {
     if (typeof raw === 'string') return retText + raw;
 
     if (Array.isArray(raw)) {
-      return raw.map((obj:Record<string, unknown>|string):string => {
+      return raw.map((obj:TextObject) => {
         if (typeof obj === 'string') return obj;
         return String(obj.text);
       }).join('');
