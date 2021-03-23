@@ -55,6 +55,10 @@ type ChatExport = UnknownIndices & {
   messages:ExportedMessage[];
 };
 
+type ChatOptions = {
+  ignoreService?:boolean,
+};
+
 type MessageOptions = {
   includeStickersAsEmoji?:boolean,
 };
