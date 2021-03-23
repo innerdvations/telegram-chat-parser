@@ -20,26 +20,46 @@
    "from": "Ben",
    "from_id": 9999999999,
    "text": [
-    "1",
     {
      "type": "bold",
-     "text": "2"
+     "text": "bold"
     },
-    "3",
+    " ",
     {
      "type": "italic",
-     "text": "4"
+     "text": "italic"
     },
-    "5",
-    {
-     "type": "underline",
-     "text": "6"
-    },
+    " ",
     {
      "type": "strikethrough",
-     "text": "7"
+     "text": "strikethrough"
     },
-    ""
+    " ",
+    {
+     "type": "underline",
+     "text": "underline"
+    },
+    " ",
+    {
+     "type": "mention",
+     "text": "@person"
+    },
+    " ",
+    {
+     "type": "text_link",
+     "text": "http://google.com",
+     "href": "http://google.com/"
+    },
+    " ",
+    {
+     "type": "code",
+     "text": "monospace"
+    },
+    " ",
+    {
+     "type": "link",
+     "text": "http://mystery.knightlab.com/"
+    }
    ]
   },
   {
@@ -176,7 +196,7 @@
    "sticker_emoji": "🤭",
    "width": 500,
    "height": 512,
-   "text": ""
+   "text": "DoNotChange"
   },
   {
    "id": 318170,

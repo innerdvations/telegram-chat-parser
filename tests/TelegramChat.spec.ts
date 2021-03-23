@@ -36,7 +36,7 @@ describe('TelegramChat', () => {
         expect(tg.messages.find((msg) => msg.id === 176169)).to.be.an('object');
         const res = tg.messages.find((msg) => msg.id === 176169);
         expect(res).to.not.be.undefined;
-        if (res !== undefined) expect(res.text).to.equal('');
+        if (res !== undefined) expect(res.text()).to.equal('');
       });
     });
   });
@@ -82,10 +82,10 @@ describe('TelegramChat', () => {
 
       describe('text', () => {
         it('should return text message text as string', () => {
-          expect(tg.messages[0].text).to.equal(SavedObj.messages[0].text);
+          expect(tg.messages[0].text()).to.equal(SavedObj.messages[0].text);
         });
         it('should return mixed object/text message text as string', () => {
-          expect(tg.messages[1].text).to.equal('1234567');
+          expect(tg.messages[1].text()).to.equal('bold italic strikethrough underline @person http://google.com monospace http://mystery.knightlab.com/');
         });
       });
 
