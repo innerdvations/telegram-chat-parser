@@ -10,7 +10,7 @@ chai.use(chaiLike);
 const ErrorJSON = fs.readFileSync('./tests/data/error.json', { encoding: 'utf8', flag: 'r' });
 
 const ErrorUnexpectedJSON = fs.readFileSync('./tests/data/error-unexpected.json', { encoding: 'utf8', flag: 'r' });
-const ErrorUnexpectedObj = JSON.parse(ErrorUnexpectedJSON);
+// const ErrorUnexpectedObj = JSON.parse(ErrorUnexpectedJSON);
 
 const BotJSON = fs.readFileSync('./tests/data/bot.json', { encoding: 'utf8', flag: 'r' });
 
