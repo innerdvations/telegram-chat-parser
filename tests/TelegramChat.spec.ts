@@ -53,6 +53,7 @@ describe('TelegramChat', () => {
     it('should have correct name', () => {
       expect(tg.name).to.equal(SavedObj.name);
     });
+
     describe('when retrieving an existing message ID', () => {
       it('should return the correct message', () => {
         const findID = 173429;
@@ -60,6 +61,7 @@ describe('TelegramChat', () => {
         expect(tg.messageByID(findID)).to.be.an('object').eql(found).and.have.property('id');
       });
     });
+
     describe('when retrieving a non-existant message ID', () => {
       it('should return undefined', () => {
         const findID = -123;
@@ -181,6 +183,12 @@ describe('TelegramChat', () => {
     it('isGroup should be false', () => {
       expect(tg.isGroup).to.be.false;
     });
+    it('isPrivateGroup should be false', () => {
+      expect(tg.isPrivateGroup).to.be.false;
+    });
+    it('isPublicSupergroup should be false', () => {
+      expect(tg.isPublicSupergroup).to.be.false;
+    });
     it('isBot should be false', () => {
       expect(tg.isBot).to.be.false;
     });
@@ -200,6 +208,12 @@ describe('TelegramChat', () => {
 
     it('isGroup should be true', () => {
       expect(tg.isGroup).to.be.true;
+    });
+    it('isPrivateGroup should be true', () => {
+      expect(tg.isPrivateGroup).to.be.true;
+    });
+    it('isPublicSupergroup should be false', () => {
+      expect(tg.isPublicSupergroup).to.be.false;
     });
     it('isBot should be false', () => {
       expect(tg.isBot).to.be.false;
@@ -221,6 +235,12 @@ describe('TelegramChat', () => {
     it('isGroup should be true', () => {
       expect(tg.isGroup).to.be.true;
     });
+    it('isPrivateGroup should be false', () => {
+      expect(tg.isPrivateGroup).to.be.false;
+    });
+    it('isPublicSupergroup should be true', () => {
+      expect(tg.isPublicSupergroup).to.be.true;
+    });
     it('isBot should be false', () => {
       expect(tg.isBot).to.be.false;
     });
@@ -240,6 +260,12 @@ describe('TelegramChat', () => {
 
     it('isGroup should be false', () => {
       expect(tg.isGroup).to.be.false;
+    });
+    it('isPrivateGroup should be false', () => {
+      expect(tg.isPrivateGroup).to.be.false;
+    });
+    it('isPublicSupergroup should be false', () => {
+      expect(tg.isPublicSupergroup).to.be.false;
     });
     it('isBot should be true', () => {
       expect(tg.isBot).to.be.true;

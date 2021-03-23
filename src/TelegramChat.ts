@@ -44,6 +44,14 @@ export default class TelegramChat {
     return this.type === ChatType.PublicSupergroup || this.type === ChatType.PublicChannel;
   }
 
+  public get isPrivateGroup():boolean {
+    return this.type === ChatType.PrivateGroup;
+  }
+
+  public get isPublicSupergroup():boolean {
+    return this.type === ChatType.PublicSupergroup;
+  }
+
   public get isGroup():boolean {
     return this.type === ChatType.PrivateGroup || this.type === ChatType.PublicSupergroup;
   }
