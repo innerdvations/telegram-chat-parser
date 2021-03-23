@@ -59,7 +59,7 @@ type MessageOptions = {
   includeStickersAsEmoji?:boolean,
 };
 
-type ExportedText = string | TextObject[];
+type ExportedText = string | [string | TextObject];
 
 type TextObject = {
   type:'bold' | 'italic'| 'underline'| 'strikethrough'| 'code' | 'link' | 'text_link' | 'mention',
