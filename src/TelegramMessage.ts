@@ -95,4 +95,12 @@ export default class TelegramMessage {
   get isSticker():boolean {
     return this.contentType === ContentType.Sticker;
   }
+
+  get isService():boolean {
+    return this.type === 'service';
+  }
+
+  get isMessage():boolean {
+    return this.type === 'message';
+  }
 }

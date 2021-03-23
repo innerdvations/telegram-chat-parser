@@ -116,6 +116,28 @@ describe('TelegramChat', () => {
         });
       });
 
+      describe('when type is message', () => {
+        const msgImage = tg.messages.find((msg) => msg.type === 'message') as TelegramMessage;
+
+        it('isService should be false', () => {
+          expect(msgImage.isService).to.be.false;
+        });
+        it('isMessage should be true', () => {
+          expect(msgImage.isMessage).to.be.true;
+        });
+      });
+
+      describe('when type is service', () => {
+        const msgImage = tg.messages.find((msg) => msg.type === 'service') as TelegramMessage;
+
+        it('isService should be true', () => {
+          expect(msgImage.isService).to.be.true;
+        });
+        it('isMessage should be false', () => {
+          expect(msgImage.isMessage).to.be.false;
+        });
+      });
+
       describe('when content type is image', () => {
         const msgImage = tg.messages.find((msg) => msg.id === 173429) as TelegramMessage;
 
