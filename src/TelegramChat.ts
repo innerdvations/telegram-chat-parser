@@ -32,6 +32,10 @@ export default class TelegramChat {
     });
   }
 
+  public messageByID(id:number):TelegramMessage | undefined {
+    return this._messages.find((m) => id === m.id);
+  }
+
   public get isBot():boolean {
     return this.type === ChatType.BotChat;
   }

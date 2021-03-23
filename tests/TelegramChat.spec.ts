@@ -53,6 +53,19 @@ describe('TelegramChat', () => {
     it('should have correct name', () => {
       expect(tg.name).to.equal(SavedObj.name);
     });
+    describe('when retrieving an existing message ID', () => {
+      it('should return the correct message', () => {
+        const findID = 173429;
+        const found = tg.messages.find((m:TelegramMessage) => m.id === findID);
+        expect(tg.messageByID(findID)).to.be.an('object').eql(found).and.have.property('id');
+      });
+    });
+    describe('when retrieving a non-existant message ID', () => {
+      it('should return undefined', () => {
+        const findID = -123;
+        expect(tg.messageByID(findID)).to.equal(undefined);
+      });
+    });
 
     describe('messages', () => {
       it('should all exist', () => {
