@@ -46,15 +46,17 @@ This module attempts to match data used by Telegram API but with a few exception
 
 #### ChatType
 
-One of the following strings:
-
-- bot_chat
-- private_group
-- public_supergroup
-- personal_chat
-- saved_messages
-- private_channel
-- public_channel
+```typescript
+enum ChatType {
+  BotChat = 'bot_chat',
+  PrivateGroup = 'private_group',
+  PublicSupergroup = 'public_supergroup',
+  PersonalChat = 'personal_chat',
+  SavedMessages = 'saved_messages',
+  PrivateChannel = 'private_channel',
+  PublicChannel = 'public_channel',
+}
+```
 
 ### TelegramMessage
 
@@ -81,24 +83,37 @@ See  for more detailed descriptions.
     from: TelegramUser;
 
     // message text converted into a string instead of string|object[]
-    text(options:TextOptions): String;
+    text(options:MessageOptions): String;
 
+}
+```
+
+### MessageOptions
+
+```typescript
+{
+    // when type is sticker, should the corresponding emoji be added to the text
+    includeStickersAsEmoji?: boolean,
 }
 ```
 
 #### ContentType
 
-One of the following strings:
-
-- text
-- image
-- audio
-- video
-- file
-- animation
-- button
-- keyboard
-- voice_message
+```typescript
+enum ContentType {
+  Text = 'text',
+  Image = 'image',
+  Audio = 'audio',
+  Video = 'video_file',
+  File = 'file',
+  Animation = 'animation',
+  Button = 'button',
+  Keyboard = 'keyboard',
+  VoiceMessage = 'voice_message',
+  Sticker = 'sticker',
+  Poll = 'poll',
+}
+```
 
 ### TelegramUser
 
