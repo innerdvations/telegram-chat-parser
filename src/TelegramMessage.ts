@@ -2,21 +2,21 @@ import moment, { Moment } from 'moment';
 import { ContentType, TelegramUser } from '.';
 
 export default class TelegramMessage {
-  private _data:ExportedMessage;
+  private _data:AnyMessage;
   private _date:Moment;
   private _user:TelegramUser;
 
-  constructor(exp:ExportedMessage, user:TelegramUser) {
+  constructor(exp:AnyMessage, user:TelegramUser) {
     this._data = exp;
     this._date = moment(String(this._data.date));
     this._user = user;
   }
 
   src(field:string):unknown {
-    return this._data[field];
+    return this.data[field];
   }
 
-  get data():ExportedMessage {
+  get data():AnyMessage {
     return this._data;
   }
 
@@ -80,6 +80,7 @@ export default class TelegramMessage {
       }).join('');
     }
 
+    // TODO: this should only ever happen if unexpected data comes in.
     return '';
   }
 }
