@@ -133,6 +133,33 @@ describe('TelegramChat', () => {
         expect(msgImage.contentType).to.equal(ContentType.Video);
       });
     });
+
+    describe('when content type is animation', () => {
+      const msgImage = tg.messages.find((msg) => msg.id === 226106) as TelegramMessage;
+
+      it('should have contentType of animation', () => {
+        expect(msgImage.contentType).to.equal(ContentType.Animation);
+      });
+    });
+
+    describe('when content type is sticker', () => {
+      const msgImage = tg.messages.find((msg) => msg.id === 278329) as TelegramMessage;
+
+      it('should have contentType of sticker', () => {
+        expect(msgImage.contentType).to.equal(ContentType.Sticker);
+      });
+
+      describe('when text includeStickersAsEmoji option is false', () => {
+        it('should not prepend text with emoji', () => {
+          expect(msgImage.text({ includeStickersAsEmoji: false })).to.equal('DoNotChange');
+        });
+      });
+      describe('when text includeStickersAsEmoji option is true', () => {
+        it('should prepend text with emoji', () => {
+          expect(msgImage.text({ includeStickersAsEmoji: true })).to.equal('🤭DoNotChange');
+        });
+      });
+    });
   });
 
   describe('when saved chat json is imported', () => {

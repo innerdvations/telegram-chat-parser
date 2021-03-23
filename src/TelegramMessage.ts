@@ -5,6 +5,9 @@ export default class TelegramMessage {
   private _data:AnyMessage;
   private _date:Moment;
   private _user:TelegramUser;
+  static Defaults:MessageOptions = {
+    includeStickersAsEmoji: false,
+  };
 
   constructor(exp:AnyMessage, user:TelegramUser) {
     this._data = exp;
@@ -69,9 +72,14 @@ export default class TelegramMessage {
     return this._user;
   }
 
-  get text():string {
-    const raw:unknown = this._data.text;
-    if (typeof raw === 'string') return raw;
+  public text(inOptions:MessageOptions = {}):string {
+    const raw:unknown = this.data.text;
+    const opts = { ...TelegramMessage.Defaults, ...inOptions };
+    let retText = '';
+
+    if (this.isSticker && opts.includeStickersAsEmoji === true) retText += this.data.sticker_emoji;
+
+    if (typeof raw === 'string') return retText + raw;
 
     if (Array.isArray(raw)) {
       return raw.map((obj:Record<string, unknown>|string):string => {
@@ -82,5 +90,9 @@ export default class TelegramMessage {
 
     // TODO: this should only ever happen if unexpected data comes in.
     return '';
+  }
+
+  get isSticker():boolean {
+    return this.contentType === ContentType.Sticker;
   }
 }
