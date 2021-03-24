@@ -128,6 +128,28 @@ describe('TelegramChat', () => {
       it('should have correct type', () => {
         expect(tg.messages[0].type).to.equal(SavedObj.messages[0].type);
       });
+      it('should have correct forwarded_from user', () => {
+        const data = SavedObj.messages.find((m:AnyMessage) => m.forwarded_from !== undefined);
+        const msg = tg.messageByID(data.id) as TelegramMessage;
+        expect((msg.forwardedFrom as TelegramUser).name).to.equal(data.forwarded_from);
+      });
+      it('should have correct saved_from user', () => {
+        const data = SavedObj.messages.find((m:AnyMessage) => m.saved_from !== undefined);
+        const msg = tg.messageByID(data.id) as TelegramMessage;
+        expect((msg.savedFrom as TelegramUser).name).to.equal(data.saved_from);
+      });
+      it('should have correct from user', () => {
+        const data = SavedObj.messages.find((m:AnyMessage) => m.from !== undefined);
+        const msg = tg.messageByID(data.id) as TelegramMessage;
+        expect((msg.from as TelegramUser).id).to.eql(data.from_id);
+        expect((msg.from as TelegramUser).name).to.eql(data.from);
+      });
+      it('should have correct actor user', () => {
+        const data = SavedObj.messages.find((m:AnyMessage) => m.actor !== undefined);
+        const msg = tg.messageByID(data.id) as TelegramMessage;
+        expect((msg.actor as TelegramUser).id).to.eql(data.actor_id);
+        expect((msg.actor as TelegramUser).name).to.eql(data.actor);
+      });
 
       describe('source data', () => {
         it('should be retrievable by key', () => {
