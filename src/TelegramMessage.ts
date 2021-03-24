@@ -1,19 +1,20 @@
 import moment, { Moment } from 'moment';
-import { ContentType, TelegramUser } from '.';
+import { ContentType, TelegramUser, TelegramChat } from '.';
 
 export default class TelegramMessage {
   private _data:AnyMessage;
   private _date:Moment;
-  private _findUser:(id:number, name:string)=>TelegramUser;
+  // TODO: find a better way to access user db
+  private _chat:TelegramChat;
 
   static Defaults:MessageOptions = {
     includeStickersAsEmoji: false,
   };
 
-  constructor(exp:AnyMessage, findUser:(id:number, name:string)=>TelegramUser) {
+  constructor(exp:AnyMessage, chat:TelegramChat) {
     this._data = exp;
     this._date = moment(String(this._data.date));
-    this._findUser = findUser;
+    this._chat = chat;
   }
 
   src(field:string):unknown {
@@ -63,7 +64,7 @@ export default class TelegramMessage {
     const name = this.data[field];
     const id = this.data[`${field}_id`];
     if (!name && !id) return undefined;
-    return this._findUser(id, name);
+    return this._chat.addOrFindUser(id, name);
   }
 
   // TODO: use an enum instead of strings, maybe even to define these functions

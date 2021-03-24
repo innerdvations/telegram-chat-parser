@@ -68,7 +68,7 @@ export default class TelegramChat {
   private parseContent(content:ChatExport):void {
     content.messages.forEach((message:AnyMessage) => {
       this.parseUsers(message);
-      this._messages.push(new TelegramMessage(message, (id, name) => this.addOrFindUser(id, name)));
+      this._messages.push(new TelegramMessage(message, this));
     });
   }
 
