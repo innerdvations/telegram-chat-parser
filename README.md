@@ -133,6 +133,9 @@ TypeScript:
   const json = fs.readFileSync('./tests/data/saved.json', { encoding: 'utf8', flag: 'r' });
   const chat = new TelegramChat(json);
 
+  // if a sticker was sent, treat the emoji it represented as text
+  chat.Defaults.includeStickersAsEmoji = true;
+
   // Get all messages
   const allMessages = chat.messages;
 
@@ -144,4 +147,11 @@ TypeScript:
 
   // Get all users that participated (had a "from" or "actor" with them in it)
   const whoDidSomething = chat.participants;
+
+  // get a regular text message that is a reply to something else
+  const reply = chat.messages.find((msg) => msg.contentType === ContentType.Text && msg.replyTo);
+  if (reply === undefined) {
+    throw new Error("Couldn't find message");
+  }
+  const message = reply.replyTo;
 ```
