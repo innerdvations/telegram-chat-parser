@@ -2,13 +2,17 @@ import { TelegramUser, TelegramMessage, ChatType } from '.';
 
 export default class TelegramChat {
   private _messages:TelegramMessage[] = [];
-  private _name = '';
+  private _name;
   private _type:ChatType;
   private _id = 0;
-  private _users:Record<string, TelegramUser> = {};
-  static Defaults:MessageOptions = {
+  private _users:TelegramUser[] = [];
+  public Defaults:MessageOptions = {
     includeStickersAsEmoji: false,
   };
+
+  public static get UserFields():string[] {
+    return ['from', 'forwarded_from', 'actor', 'saved_from'];
+  }
 
   constructor(input:string) {
     const content = JSON.parse(input);
@@ -18,19 +22,49 @@ export default class TelegramChat {
     }
     this._name = content.name;
     this._id = content.id;
-    this._type = content.type;
-    this.parseContents(content);
+    this._type = content.type as ChatType;
+    this.parseContent(content);
   }
 
-  parseContents(contents:ChatExport):void {
-    contents.messages.forEach((exp:ExportedMessage) => {
-      const id = Number(exp.from_id);
-      let u = this._users[String(id)];
-      if (u === undefined) {
-        u = new TelegramUser(id, String(exp.from));
-        this._users[String(id)] = u;
+  private parseUsers(message:AnyMessage):void {
+    TelegramChat.UserFields.forEach((field:string) => {
+      const foundName:undefined|string = message[field];
+      const foundId:undefined|number = message[`${field}_id`];
+      if (foundId || foundName) this.addOrFindUser(foundId, foundName);
+    });
+  }
+
+  public addOrFindUser(id?:number, name?:string):TelegramUser {
+    // if we found this id, return the user
+    const existingId = this._users.find((user:TelegramUser) => user.id === id && id !== undefined);
+    if (existingId) {
+      return existingId;
+    }
+
+    const existingName = this._users.find((user:TelegramUser) => user.name === name);
+    if (existingName) {
+      // if found name has id that doesn't match this, it must be a new user with the same name
+      if (existingName.id && id) {
+        const newUser = new TelegramUser(id, name);
+        this._users.push(newUser);
+        return newUser;
       }
-      this._messages.push(new TelegramMessage(exp, u));
+      // if found name has no id, assume it's the same user and add new id info
+      if (!existingName.id && id) existingName.id = id;
+
+      return existingName;
+    }
+
+    // if it doesn't already exist, add it to the users array
+    const newUser = new TelegramUser(id, name);
+    this._users.push(newUser);
+    return newUser;
+  }
+
+  private parseContent(content:ChatExport):void {
+    content.messages.forEach((message:AnyMessage) => {
+      this.parseUsers(message);
+      this._messages.push(new TelegramMessage(message, (id, name) => this.addOrFindUser(id, name)));
     });
   }
 
@@ -80,5 +114,9 @@ export default class TelegramChat {
 
   public get messages():TelegramMessage[] {
     return this._messages;
+  }
+
+  public get users():TelegramUser[] {
+    return this._users;
   }
 }

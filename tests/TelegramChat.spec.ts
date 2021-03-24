@@ -3,7 +3,9 @@ import chai, { expect } from 'chai';
 import * as fs from 'fs';
 import chaiLike from 'chai-like';
 import moment from 'moment';
-import { ContentType, TelegramChat, TelegramMessage } from '../src';
+import {
+  ContentType, TelegramChat, TelegramMessage, TelegramUser,
+} from '../src';
 
 chai.use(chaiLike);
 
@@ -20,6 +22,9 @@ const PublicSupergroupJSON = fs.readFileSync('./tests/data/public_supergroup.jso
 
 const SavedJSON = fs.readFileSync('./tests/data/saved.json', { encoding: 'utf8', flag: 'r' });
 const SavedObj = JSON.parse(SavedJSON);
+
+const UsersTestJSON = fs.readFileSync('./tests/data/users_test.json', { encoding: 'utf8', flag: 'r' });
+const UsersTestObj = JSON.parse(UsersTestJSON);
 
 describe('TelegramChat', () => {
   describe('when importing invalid json', () => {
@@ -69,6 +74,41 @@ describe('TelegramChat', () => {
       });
     });
 
+    describe('users', () => {
+      const tgUsersTest = new TelegramChat(UsersTestJSON);
+      const { users } = tgUsersTest;
+      it('should have correct amount of users', () => {
+        expect(users).to.have.length(4);
+      });
+      it('should find user first found in from with correct data', () => {
+        const user = users.find((u) => u.name === 'User1');
+        expect(user).to.not.be.undefined;
+        expect((user as TelegramUser).name).to.equal('User1');
+        expect((user as TelegramUser).id).to.equal(1);
+      });
+      it('should find user first found in forwarded_from with correct name', () => {
+        const user = users.find((u) => u.name === 'User3');
+        expect(user).to.not.be.undefined;
+        expect((user as TelegramUser).name).to.equal('User3');
+      });
+      it('should find user first found in saved_from with correct name', () => {
+        const user = users.find((u) => u.name === 'User4');
+        expect(user).to.not.be.undefined;
+        expect((user as TelegramUser).name).to.equal('User4');
+      });
+      it('should not have id for user only found in saved_from', () => {
+        const user = users.find((u) => u.name === 'User4');
+        expect(user).to.not.be.undefined;
+        expect((user as TelegramUser).id).to.be.undefined;
+      });
+      it('should have name and id for user initially found without id', () => {
+        const user = users.find((u) => u.name === 'User3');
+        expect(user).to.not.be.undefined;
+        expect((user as TelegramUser).name).to.equal('User3');
+        expect((user as TelegramUser).id).to.equal(3);
+      });
+    });
+
     describe('messages', () => {
       it('should all exist', () => {
         expect(tg.messages).to.have.length(SavedObj.messages.length);
@@ -104,15 +144,13 @@ describe('TelegramChat', () => {
         });
       });
 
-      describe('user', () => {
-        it('should return user object', () => {
-          expect(tg.messages[0].user)
-            .to.be.like(
-              {
-                id: SavedObj.messages[0].from_id,
-                name: SavedObj.messages[0].from,
-              },
-            );
+      describe('from', () => {
+        it('should return first user', () => {
+          expect({
+            id: SavedObj.messages[0].from_id,
+            name: SavedObj.messages[0].from,
+          })
+            .to.be.like(tg.messages[0].from);
         });
       });
 

@@ -22,7 +22,9 @@ type ExportedMessage = BaseMessage & {
   from?:string;
   from_id?:number;
   forwarded_from?:string;
+  forwarded_from_id?:string; // never actually sent, but just in case
   saved_from?:string;
+  saved_from_id?:string; // never actually sent, but just in case
   via_bot?:string;
   poll?:Poll;
   reply_to_message_id?:number;

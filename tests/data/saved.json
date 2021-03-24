@@ -252,8 +252,8 @@
    "date": "2021-03-21T18:20:17",
    "from": "Ben",
    "from_id": 9999999999,
-   "forwarded_from": "Other Person",
-   "saved_from": "Other Person",
+   "forwarded_from": "ForwardedFrom Person",
+   "saved_from": "SavedFrom Person",
    "text": "- a list\n- with line breaks\n- three \n- four"
   },
   {

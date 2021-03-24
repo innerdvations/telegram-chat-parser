@@ -1,17 +1,9 @@
 export default class TelegramUser {
-  private _id:null | number = null;
-  private _name:null | string = null;
+  public id:undefined | number = undefined;
+  public name:undefined | string = undefined;
 
-  constructor(id:number, name:string) {
-    this._id = id;
-    this._name = name;
-  }
-
-  get name():null | string {
-    return this._name;
-  }
-
-  get id():null | number {
-    return this._id;
+  constructor(id:undefined | number, name:undefined | string) {
+    this.id = id;
+    this.name = name;
   }
 }

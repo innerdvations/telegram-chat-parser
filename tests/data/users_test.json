@@ -1,0 +1,83 @@
+{
+  "type": "saved_messages",
+  "id": 1,
+  "messages": [
+   {
+    "id": 100,
+    "type": "message",
+    "date": "2020-10-15T10:28:10",
+    "from": "User1",
+    "from_id": 1,
+    "text": "Simple from"
+   },
+   {
+    "id": 200,
+    "type": "message",
+    "date": "2020-10-15T21:27:44",
+    "from": "User1",
+    "from_id": 1,
+    "via_bot": "@gif",
+    "file": "video_files/mp4.mp4",
+    "media_type": "animation",
+    "mime_type": "video/mp4",
+    "duration_seconds": 4,
+    "width": 186,
+    "height": 186,
+    "text": "via bot"
+   },
+   {
+    "id": 300,
+    "type": "message",
+    "date": "2020-10-25T13:04:16",
+    "from": "User2",
+    "from_id": 2,
+    "text": "\"quoted text\""
+   },
+   {
+    "id": 400,
+    "type": "message",
+    "date": "2021-03-12T15:38:26",
+    "from": "User1",
+    "from_id": 1,
+    "forwarded_from": "User3",
+    "saved_from": "User4",
+    "file": "(File exceeds maximum size. Change data exporting settings to download.)",
+    "thumbnail": "(File exceeds maximum size. Change data exporting settings to download.)",
+    "media_type": "video_file",
+    "mime_type": "video/mp4",
+    "duration_seconds": 204,
+    "width": 416,
+    "height": 736,
+    "text": ""
+   },
+   {
+    "id": 500,
+    "type": "message",
+    "date": "2021-03-21T18:20:17",
+    "from": "User2",
+    "from_id": 2,
+    "forwarded_from": "User2",
+    "saved_from": "User4",
+    "text": "- a list\n- with line breaks\n- three \n- four"
+   },
+   {
+     "id": 600,
+     "type": "service",
+     "date": "2021-03-22T17:16:54",
+     "actor": "User3",
+     "actor_id": 3,
+     "action": "pin_message",
+     "message_id": 300,
+     "text": ""
+    },
+    {
+     "id": 700,
+     "type": "message",
+     "date": "2021-03-22T17:18:09",
+     "from": "User2",
+     "from_id": 2,
+     "reply_to_message_id": 500,
+     "text": "reply to previous real message"
+    }
+  ]
+ }
