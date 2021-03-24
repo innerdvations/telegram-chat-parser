@@ -84,6 +84,12 @@ export default class TelegramMessage {
     return this.userFromField('saved_from');
   }
 
+  get replyTo():undefined | TelegramMessage {
+    if (!this.data.reply_to_message_id) return undefined;
+
+    return this._chat.messageByID(Number(this.data.reply_to_message_id));
+  }
+
   public text(inOptions:MessageOptions = {}):string {
     const raw:unknown = this.data.text;
     const opts = { ...TelegramMessage.Defaults, ...inOptions };

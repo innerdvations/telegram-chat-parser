@@ -174,6 +174,20 @@ describe('TelegramChat', () => {
         });
       });
 
+      describe('replyTo', () => {
+        it('should return existing message being replied to', () => {
+          const reply = tg.messageByID(7);
+          const parent = tg.messageByID(6);
+          expect(reply).to.not.be.undefined;
+          expect((reply as TelegramMessage).replyTo).to.like(parent);
+        });
+        it('when not a reply should return undefined', () => {
+          const reply = tg.messageByID(8);
+          expect(reply).to.not.be.undefined;
+          expect((reply as TelegramMessage).replyTo).to.be.undefined;
+        });
+      });
+
       describe('source data', () => {
         it('should be retrievable by key', () => {
           expect(tg.messages[0].src('type')).to.equal(SavedObj.messages[0].type);

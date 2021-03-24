@@ -26,6 +26,13 @@ function readmeScript() {
 
   // Get all users that participated (had a "from" or "actor" with them in it)
   const whoDidSomething = chat.participants;
+
+  // get a regular text message that is a reply to something else
+  const reply = chat.messages.find((msg) => msg.contentType === ContentType.Text && msg.replyTo);
+  if (reply === undefined) {
+    throw new Error("Couldn't find message");
+  }
+  const message = reply.replyTo;
 }
 
 describe('TelegramChat', () => {
