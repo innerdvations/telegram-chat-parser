@@ -74,6 +74,14 @@ describe('TelegramChat', () => {
       });
     });
 
+    describe('participants', () => {
+      const tgUsersTest = new TelegramChat(UsersTestJSON);
+      const { participants } = tgUsersTest;
+      it('should have correct amount of users', () => {
+        expect(participants).to.have.length(3);
+      });
+    });
+
     describe('users', () => {
       const tgUsersTest = new TelegramChat(UsersTestJSON);
       const { users } = tgUsersTest;

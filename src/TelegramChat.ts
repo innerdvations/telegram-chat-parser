@@ -123,4 +123,8 @@ export default class TelegramChat {
   public get users():TelegramUser[] {
     return this._users;
   }
+
+  public get participants():TelegramUser[] {
+    return this._users.filter((u:TelegramUser) => u.participated);
+  }
 }
