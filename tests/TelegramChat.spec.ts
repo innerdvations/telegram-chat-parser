@@ -24,7 +24,7 @@ const SavedJSON = fs.readFileSync('./tests/data/saved.json', { encoding: 'utf8',
 const SavedObj = JSON.parse(SavedJSON);
 
 const UsersTestJSON = fs.readFileSync('./tests/data/users_test.json', { encoding: 'utf8', flag: 'r' });
-const UsersTestObj = JSON.parse(UsersTestJSON);
+// const UsersTestObj = JSON.parse(UsersTestJSON);
 
 describe('TelegramChat', () => {
   describe('when importing invalid json', () => {
@@ -186,16 +186,6 @@ describe('TelegramChat', () => {
         });
         it('should return mixed object/text message text as string', () => {
           expect(tg.messages[1].text()).to.equal('bold italic strikethrough underline @person http://google.com monospace http://mystery.knightlab.com/');
-        });
-      });
-
-      describe('from', () => {
-        it('should return first user', () => {
-          expect(tg.messages[0].from)
-            .to.be.like({
-              id: SavedObj.messages[0].from_id,
-              name: SavedObj.messages[0].from,
-            });
         });
       });
 
