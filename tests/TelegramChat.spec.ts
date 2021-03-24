@@ -107,6 +107,11 @@ describe('TelegramChat', () => {
         expect((user as TelegramUser).name).to.equal('User3');
         expect((user as TelegramUser).id).to.equal(3);
       });
+      it('should know if a user is a participant', () => {
+        const user = users.find((u) => u.name === 'User3');
+        expect(user).to.not.be.undefined;
+        expect((user as TelegramUser).participated).to.be.true;
+      });
     });
 
     describe('messages', () => {
@@ -178,11 +183,11 @@ describe('TelegramChat', () => {
 
       describe('from', () => {
         it('should return first user', () => {
-          expect({
-            id: SavedObj.messages[0].from_id,
-            name: SavedObj.messages[0].from,
-          })
-            .to.be.like(tg.messages[0].from);
+          expect(tg.messages[0].from)
+            .to.be.like({
+              id: SavedObj.messages[0].from_id,
+              name: SavedObj.messages[0].from,
+            });
         });
       });
 

@@ -30,14 +30,17 @@ export default class TelegramChat {
     TelegramChat.UserFields.forEach((field:string) => {
       const foundName:undefined|string = message[field];
       const foundId:undefined|number = message[`${field}_id`];
-      if (foundId || foundName) this.addOrFindUser(foundId, foundName);
+      const participated = ['actor', 'from'].includes(field);
+
+      if (foundId || foundName) this.addOrFindUser(foundId, foundName, participated);
     });
   }
 
-  public addOrFindUser(id?:number, name?:string):TelegramUser {
+  public addOrFindUser(id?:number, name?:string, participated?:boolean):TelegramUser {
     // if we found this id, return the user
     const existingId = this._users.find((user:TelegramUser) => user.id === id && id !== undefined);
     if (existingId) {
+      existingId.participated = participated;
       return existingId;
     }
 
@@ -45,18 +48,19 @@ export default class TelegramChat {
     if (existingName) {
       // if found name has id that doesn't match this, it must be a new user with the same name
       if (existingName.id && id) {
-        const newUser = new TelegramUser(id, name);
+        const newUser = new TelegramUser(id, name, participated);
         this._users.push(newUser);
         return newUser;
       }
       // if found name has no id, assume it's the same user and add new id info
       if (!existingName.id && id) existingName.id = id;
 
+      existingName.participated = participated;
       return existingName;
     }
 
     // if it doesn't already exist, add it to the users array
-    const newUser = new TelegramUser(id, name);
+    const newUser = new TelegramUser(id, name, participated);
     this._users.push(newUser);
     return newUser;
   }
