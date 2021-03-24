@@ -64,7 +64,7 @@ This module attempts to match data used by Telegram API but with a few exception
 }
 ```
 
-#### ChatTypeyarn dev-wa
+#### ChatType
 
 ```typescript
 enum ChatType {
