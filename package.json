@@ -1,7 +1,7 @@
 {
-  "name": "telegram-parser",
+  "name": "telegram-chat-parser",
   "version": "1.0.0",
-  "description": "Convert Telegram JSON chat exports into an object",
+  "description": "Module to import and easily navigate Telegram JSON chat exports",
   "main": "dist/index.js",
   "author": "Benjamin Irvin",
   "license": "MIT",
