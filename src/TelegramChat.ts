@@ -6,8 +6,9 @@ export default class TelegramChat {
   private _type:ChatType;
   private _id = 0;
   private _users:TelegramUser[] = [];
-  public Defaults:MessageOptions = {
+  public Defaults:ChatOptions & MessageOptions = {
     includeStickersAsEmoji: false,
+    ignoreService: false,
   };
 
   public static get UserFields():string[] {

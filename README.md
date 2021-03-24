@@ -4,6 +4,8 @@ NodeJS module to convert exported Telegram JSON chat data into an object for eas
 
 ## Installation
 
+Not yet available on npm.
+
 ```sh
 npm install telegram-chat-parser
 ```
@@ -39,12 +41,30 @@ This module attempts to match data used by Telegram API but with a few exception
     isPrivateGroup: boolean;
     isChannel: boolean;
 
-    // Array of all messages in chat
+    // All messages in chat
     messages: TelegramMessage[];
+
+    // All users referenced in chat (may not include id)
+    users: TelegramUser[];  
+
+    // All users that paricipated in the chat (found in "from" or "actor")
+    // Should always have id
+    participants: TelegramUser[];
+
+    // Options for converting data
+    Defaults: ChatOptions & MessageOptions;
 }
 ```
 
-#### ChatType
+#### ChatOptions
+
+```typescript
+{
+  ignoreService = false,
+}
+```
+
+#### ChatTypeyarn dev-wa
 
 ```typescript
 enum ChatType {
