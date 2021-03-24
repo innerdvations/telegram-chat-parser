@@ -129,12 +129,19 @@ enum ContentType {
 TypeScript:
 
 ```typescript
-import { Chat } from 'telegram-chat-parser'
-import * as fs from 'fs';
+  // Load chat
+  const json = fs.readFileSync('./tests/data/saved.json', { encoding: 'utf8', flag: 'r' });
+  const chat = new TelegramChat(json);
 
-// read in the chat file
-const json = fs.readFileSync('./tests/data/error.json', { encoding: 'utf8', flag: 'r' });
-const chat = new TelegramChat(json);
+  // Get all messages
+  const allMessages = chat.messages;
 
+  // without services messages
+  const realMessages = chat.messages.filter((msg:TelegramMessage) => msg.isMessage);
 
+  // Get all users referred to in any way
+  const allUsersFound = chat.users;
+
+  // Get all users that participated (had a "from" or "actor" with them in it)
+  const whoDidSomething = chat.participants;
 ```

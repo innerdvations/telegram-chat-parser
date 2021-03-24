@@ -4,7 +4,9 @@ import chai, { expect } from 'chai';
 import * as fs from 'fs';
 import chaiLike from 'chai-like';
 import moment from 'moment';
-import { ContentType, TelegramChat, TelegramMessage } from '../src';
+import {
+  ContentType, TelegramChat, TelegramMessage, TelegramUser,
+} from '../src';
 
 chai.use(chaiLike);
 
@@ -17,7 +19,13 @@ function readmeScript() {
   const allMessages = chat.messages;
 
   // without services messages
-  const realMessages = allMessages.filter((msg:TelegramMessage) => msg.isMessage);
+  const realMessages = chat.messages.filter((msg:TelegramMessage) => msg.isMessage);
+
+  // Get all users referred to in any way
+  const allUsersFound = chat.users;
+
+  // Get all users that participated (had a "from" or "actor" with them in it)
+  const whoDidSomething = chat.participants;
 }
 
 describe('TelegramChat', () => {
