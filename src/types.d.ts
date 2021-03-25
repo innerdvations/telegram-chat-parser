@@ -57,12 +57,13 @@ type ChatExport = UnknownIndices & {
   messages:ExportedMessage[];
 };
 
-type ChatOptions = {
-  ignoreService?:boolean,
-};
-
 type MessageOptions = {
   includeStickersAsEmoji?:boolean,
+};
+
+type ChatOptions = MessageOptions & {
+  ignoreService?:boolean,
+  mergeMissingUserIdIntoName?:boolean,
 };
 
 type ExportedText = string | [string | TextObject];

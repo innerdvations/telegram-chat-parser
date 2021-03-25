@@ -58,9 +58,12 @@ This module attempts to match data used by Telegram API but with a few exception
 
 #### ChatOptions
 
+Default values for TelegramChat are shown.
+
 ```typescript
 {
   ignoreService = false,
+  mergeMissingUserIdIntoName = true,
 }
 ```
 

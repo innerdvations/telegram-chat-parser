@@ -78,6 +78,24 @@
      "from_id": 2,
      "reply_to_message_id": 500,
      "text": "reply to previous real message"
+    },
+    {
+     "id": 800,
+     "type": "message",
+     "date": "2021-03-22T17:18:09",
+     "from": "User4",
+     "from_id": 4,
+     "reply_to_message_id": 500,
+     "text": "reply to previous real message"
+    },
+    {
+     "id": 900,
+     "type": "message",
+     "date": "2021-03-22T17:18:09",
+     "from": "User4",
+     "from_id": 4,
+     "forwarded_from": "User5",
+     "text": "reply to previous real message"
     }
   ]
  }

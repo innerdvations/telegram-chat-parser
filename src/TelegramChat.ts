@@ -6,16 +6,18 @@ export default class TelegramChat {
   private _type:ChatType;
   private _id = 0;
   private _users:TelegramUser[] = [];
-  public Defaults:ChatOptions & MessageOptions = {
+  private _options:ChatOptions & MessageOptions = {};
+  private static Defaults:ChatOptions = {
     includeStickersAsEmoji: false,
     ignoreService: false,
+    mergeMissingUserIdIntoName: true,
   };
 
   public static get UserFields():string[] {
     return ['from', 'forwarded_from', 'actor', 'saved_from'];
   }
 
-  constructor(input:string) {
+  constructor(input:string, options:ChatOptions = {}) {
     const content = JSON.parse(input);
     // istanbul ignore next
     if (content === undefined) {
@@ -24,46 +26,67 @@ export default class TelegramChat {
     this._name = content.name;
     this._id = content.id;
     this._type = content.type as ChatType;
+    this._options = { ...TelegramChat.Defaults, ...options };
     this.parseContent(content);
   }
 
   private parseUsers(message:AnyMessage):void {
     TelegramChat.UserFields.forEach((field:string) => {
-      const foundName:undefined|string = message[field];
-      const foundId:undefined|number = message[`${field}_id`];
-      const participated = ['actor', 'from'].includes(field);
-
-      if (foundId || foundName) this.addOrFindUser(foundId, foundName, participated);
+      const hasId:undefined|number = message[`${field}_id`];
+      const hasName:undefined|string = message[field];
+      const hasParticipated = ['actor', 'from'].includes(field);
+      if (hasId || hasName) this.addOrFindUser(hasId, hasName, hasParticipated);
     });
   }
 
-  public addOrFindUser(id?:number, name?:string, participated?:boolean):TelegramUser {
-    // if we found this id, return the user
-    const existingId = this._users.find((user:TelegramUser) => user.id === id && id !== undefined);
-    if (existingId) {
-      existingId.participated = participated;
-      return existingId;
-    }
+  public addUser(id?:number, name?:string, participated?:boolean):TelegramUser {
+    // istanbul ignore next
+    if (!id && !name) throw Error("can't create user without id or name");
+    const u = new TelegramUser(id, name, participated);
+    this._users.push(u);
+    return u;
+  }
 
-    const existingName = this._users.find((user:TelegramUser) => user.name === name);
-    if (existingName) {
-      // if found name has id that doesn't match this, it must be a new user with the same name
-      if (existingName.id && id) {
-        const newUser = new TelegramUser(id, name, participated);
-        this._users.push(newUser);
-        return newUser;
+  public findUserById(id:number):undefined | TelegramUser {
+    return this._users.find((user:TelegramUser) => user.id === id && id !== undefined);
+  }
+
+  public findUserByName(name:string):undefined | TelegramUser {
+    return this._users.find((user:TelegramUser) => user.name === name && name !== undefined);
+  }
+
+  public addOrFindUser(hasId?:number, hasName?:string, hasParticipated?:boolean):TelegramUser {
+    let u:undefined | TelegramUser;
+
+    if (hasId) {
+      u = this.findUserById(hasId);
+      // TODO: handle name mismatch
+      if (u) {
+        if (hasParticipated) u.participated = true;
+        return u;
       }
-      // if found name has no id, assume it's the same user and add new id info
-      if (!existingName.id && id) existingName.id = id;
-
-      existingName.participated = participated;
-      return existingName;
     }
 
-    // if it doesn't already exist, add it to the users array
-    const newUser = new TelegramUser(id, name, participated);
-    this._users.push(newUser);
-    return newUser;
+    // istanbul ignore next
+    if (!hasName) throw Error("Can't find user without id or name"); // should be impossible, but to be safe
+
+    u = this.findUserByName(hasName);
+    if (u) {
+      if (hasId) {
+        if (this._options.mergeMissingUserIdIntoName && hasId) {
+          u.id = hasId;
+          // istanbul ignore next
+          if (hasParticipated) u.participated = true; // should be impossible, but to be safe
+          return u;
+        }
+        return this.addUser(hasId, hasName, hasParticipated);
+      }
+
+      if (hasParticipated) u.participated = true;
+      return u;
+    }
+
+    return this.addUser(hasId, hasName, hasParticipated);
   }
 
   private parseContent(content:ChatExport):void {
