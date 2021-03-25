@@ -1,6 +1,6 @@
 {
   "name": "@baronvoninternet/telegram-chat-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Module to import and easily navigate Telegram JSON chat exports",
   "main": "dist/index.js",
   "author": "Benjamin Irvin",
