@@ -63,8 +63,8 @@ Default values for TelegramChat are shown.
 
 ```typescript
 ImportMessageOptions & {
-  ignoreService = false,
-  mergeMissingUserIdIntoName = true,
+  ignoreService:boolean, //default: false,
+  mergeMissingUserIdIntoName:boolean, // default: true,
 }
 ```
 
