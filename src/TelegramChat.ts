@@ -85,6 +85,10 @@ export default class TelegramChat {
     return this.type === ChatType.PublicSupergroup || this.type === ChatType.PublicChannel;
   }
 
+  public get isPrivate():boolean {
+    return !this.isPublic;
+  }
+
   public get isPrivateGroup():boolean {
     return this.type === ChatType.PrivateGroup;
   }
@@ -97,12 +101,24 @@ export default class TelegramChat {
     return this.type === ChatType.PrivateGroup || this.type === ChatType.PublicSupergroup;
   }
 
-  public get isSavedMessages():boolean {
+  public get isSaved():boolean {
     return this.type === ChatType.SavedMessages;
+  }
+
+  public get isPersonal():boolean {
+    return this.type === ChatType.PersonalChat;
   }
 
   public get isChannel():boolean {
     return this.type === ChatType.PrivateChannel || this.type === ChatType.PublicChannel;
+  }
+
+  public get isPrivateChannel():boolean {
+    return this.type === ChatType.PrivateChannel;
+  }
+
+  public get isPublicChannel():boolean {
+    return this.type === ChatType.PublicChannel;
   }
 
   public get id():number {
