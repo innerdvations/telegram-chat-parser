@@ -6,7 +6,7 @@ export default class TelegramChat {
   private _type:ChatType;
   private _id = 0;
   private _users:TelegramUser[] = [];
-  private _options:ChatOptions & MessageOptions = {};
+  private _options:ChatOptions = {};
   private static Defaults:ChatOptions = {
     includeStickersAsEmoji: false,
     ignoreService: false,
@@ -32,8 +32,8 @@ export default class TelegramChat {
 
   private parseUsers(message:AnyMessage):void {
     TelegramChat.UserFields.forEach((field:string) => {
-      const hasId:undefined|number = message[`${field}_id`];
-      const hasName:undefined|string = message[field];
+      const hasId:undefined|number = message[`${field}_id`] as undefined|number;
+      const hasName:undefined|string = message[field] as undefined|string;
       const hasParticipated = ['actor', 'from'].includes(field);
       if (hasId || hasName) this.addOrFindUser(hasId, hasName, hasParticipated);
     });

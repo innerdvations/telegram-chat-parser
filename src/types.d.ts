@@ -48,7 +48,7 @@ type ServiceMessage = BaseMessage & {
   message_id?:number;
 };
 
-type AnyMessage = ExportedMessage & MediaMessasge & ServiceMessage;
+type AnyMessage = ExportedMessage & MediaMessage & ServiceMessage;
 
 type ChatExport = UnknownIndices & {
   id:number;

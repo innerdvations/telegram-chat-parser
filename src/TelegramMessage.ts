@@ -61,8 +61,8 @@ export default class TelegramMessage {
 
   // TODO: make this safer by restricting what strings can be passed in
   userFromField(field:string):undefined | TelegramUser {
-    const name = this.data[field];
-    const id = this.data[`${field}_id`];
+    const name = this.data[field] as undefined|string;
+    const id = this.data[`${field}_id`] as undefined|number;
     if (!name && !id) return undefined;
     return this._chat.addOrFindUser(id, name);
   }
