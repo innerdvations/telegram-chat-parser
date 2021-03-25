@@ -14,7 +14,7 @@ TypeScript:
 
 ```typescript
   import { TelegramChat } from 'telegram-chat-parser';
-  
+
   // configure options (optional)
   const options:ChatOptions = {
     includeStickersAsEmoji: true,
@@ -171,9 +171,9 @@ enum ContentType {
 {
     id: number;
     name: String;
+    participated: boolean; // did the user participate in the chat
 }
 ```
-
 
 ## Useful Links
 
