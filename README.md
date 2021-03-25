@@ -8,6 +8,44 @@ NodeJS module to convert exported Telegram JSON chat data into an object for eas
 npm install telegram-chat-parser
 ```
 
+## Demo
+
+TypeScript:
+
+```typescript
+  import { TelegramChat } from 'telegram-chat-parser';
+  
+  // configure options (optional)
+  const options:ChatOptions = {
+    includeStickersAsEmoji: true,
+  };
+
+  // Load chat
+  const json = fs.readFileSync('./tests/data/saved.json', { encoding: 'utf8', flag: 'r' });
+  const chat = new TelegramChat(json, options);
+
+  // Get all messages
+  const allMessages = chat.messages;
+
+  // without services messages
+  const realMessages = chat.messages.filter((msg:TelegramMessage) => msg.isMessage);
+
+  // Get all users referred to in any way
+  const allUsersFound = chat.users;
+
+  // Get all users that participated (had a "from" or "actor" with them in it)
+  const whoDidSomething = chat.participants;
+
+  // get a regular text message that is a reply to something else
+  const reply = chat.messages.find((msg) => msg.contentType === ContentType.Text && msg.replyTo);
+  if (reply === undefined) {
+    throw new Error("Couldn't find message");
+  }
+  const message = reply.replyTo;
+```
+
+## Definitions
+
 ### TelegramChat
 
 ```typescript
@@ -136,39 +174,6 @@ enum ContentType {
 }
 ```
 
-## Demo
-
-TypeScript:
-
-```typescript
-  // configure options (optional)
-  const options:ChatOptions = {
-    includeStickersAsEmoji: true,
-  };
-
-  // Load chat
-  const json = fs.readFileSync('./tests/data/saved.json', { encoding: 'utf8', flag: 'r' });
-  const chat = new TelegramChat(json, options);
-
-  // Get all messages
-  const allMessages = chat.messages;
-
-  // without services messages
-  const realMessages = chat.messages.filter((msg:TelegramMessage) => msg.isMessage);
-
-  // Get all users referred to in any way
-  const allUsersFound = chat.users;
-
-  // Get all users that participated (had a "from" or "actor" with them in it)
-  const whoDidSomething = chat.participants;
-
-  // get a regular text message that is a reply to something else
-  const reply = chat.messages.find((msg) => msg.contentType === ContentType.Text && msg.replyTo);
-  if (reply === undefined) {
-    throw new Error("Couldn't find message");
-  }
-  const message = reply.replyTo;
-```
 
 ## Useful Links
 
