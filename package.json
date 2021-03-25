@@ -1,5 +1,5 @@
 {
-  "name": "telegram-chat-parser",
+  "name": "@baronvoninternet/telegram-chat-parser",
   "version": "1.0.0",
   "description": "Module to import and easily navigate Telegram JSON chat exports",
   "main": "dist/index.js",
