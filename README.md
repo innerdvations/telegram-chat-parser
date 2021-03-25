@@ -42,6 +42,7 @@ TypeScript:
     throw new Error("Couldn't find message");
   }
   const message = reply.replyTo;
+  const text = message?.text();
 ```
 
 ## Definitions
@@ -133,7 +134,7 @@ See  for more detailed descriptions.
     from: TelegramUser;
 
     // message text converted into a string instead of string|object[]
-    text(options:MessageOptions): String;
+    text(options?:MessageOptions): String;
 
 }
 ```

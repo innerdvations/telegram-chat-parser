@@ -39,6 +39,7 @@ function readmeScript() {
     throw new Error("Couldn't find message");
   }
   const message = reply.replyTo;
+  const text = message?.text();
 }
 
 describe('TelegramChat', () => {
