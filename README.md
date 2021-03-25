@@ -152,12 +152,14 @@ enum ContentType {
 TypeScript:
 
 ```typescript
+  // configure options (optional)
+  const options:ChatOptions = {
+    includeStickersAsEmoji: true,
+  };
+
   // Load chat
   const json = fs.readFileSync('./tests/data/saved.json', { encoding: 'utf8', flag: 'r' });
-  const chat = new TelegramChat(json);
-
-  // if a sticker was sent, treat the emoji it represented as text
-  chat.Defaults.includeStickersAsEmoji = true;
+  const chat = new TelegramChat(json, options);
 
   // Get all messages
   const allMessages = chat.messages;
