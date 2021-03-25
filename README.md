@@ -8,18 +8,6 @@ NodeJS module to convert exported Telegram JSON chat data into an object for eas
 npm install telegram-chat-parser
 ```
 
-## Object Definitions
-
-This module attempts to match data used by Telegram API but with a few exceptions for ease of use where noted.
-
-[Telegram Bot schema](https://core.telegram.org/bots/api)
-
-[Telegram Message definition](https://core.telegram.org/constructor/message)
-
-[Telegram Chat definition](https://core.telegram.org/constructor/chat)
-
-[Telegram User definition](https://core.telegram.org/constructor/user)
-
 ### TelegramChat
 
 ```typescript
@@ -181,3 +169,15 @@ TypeScript:
   }
   const message = reply.replyTo;
 ```
+
+## Useful Links
+
+Telegram uses a variety of schema to define this data, but does not seem to have released a schema for an export. If you are confused about some of the data found in the export, you may find out more in the following links: 
+
+[Telegram Bot schema](https://core.telegram.org/bots/api)
+
+[Telegram Message definition](https://core.telegram.org/constructor/message)
+
+[Telegram Chat definition](https://core.telegram.org/constructor/chat)
+
+[Telegram User definition](https://core.telegram.org/constructor/user)
