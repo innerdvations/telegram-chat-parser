@@ -5,7 +5,7 @@ NodeJS module to convert exported Telegram JSON chat data into an object for eas
 ## Installation
 
 ```sh
-npm install @baronvoninternet/telegram-chat-parser
+npm install telegram-chat-parser
 ```
 
 ## Object Definitions

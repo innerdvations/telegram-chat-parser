@@ -1,9 +1,10 @@
 {
-  "name": "@baronvoninternet/telegram-chat-parser",
+  "name": "telegram-chat-parser",
   "version": "1.0.1",
   "description": "Module to import and easily navigate Telegram JSON chat exports",
-  "main": "dist/index.js",
-  "author": "Benjamin Irvin",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "author": "Ben Irvin",
   "license": "MIT",
   "pre-commit": {
     "silent": true,
@@ -12,7 +13,18 @@
       "test-min"
     ]
   },
+  "files": [
+    "dist/src/**/*"
+  ],
+  "bugs": {
+    "url": "https://github.com/innerdvations/telegram-chat-parser/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/innerdvations/telegram-chat-parser.git"
+  },
   "scripts": {
+    "prepublish": "yarn build",
     "build": "npx tsc",
     "build-watch": "npx tsc-watch",
     "test": "./node_modules/.bin/ts-mocha",
