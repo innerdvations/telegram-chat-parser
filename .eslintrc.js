@@ -5,7 +5,7 @@ module.exports = {
     node: true,
   },
   extends: [
-    'airbnb-typescript/base',
+    'airbnb-base-typescript',
     'plugin:@typescript-eslint/recommended',
   ],
   ignorePatterns: ['**/dist', '**/.git', '**/node_modules', '.eslintrc.js', 'nyc.config.js', '**/data/error*.json'],
