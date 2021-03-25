@@ -1,4 +1,5 @@
 import { TelegramUser, TelegramMessage, ChatType } from '.';
+import { AnyMessage, ChatExport, ChatOptions } from './types';
 
 export default class TelegramChat {
   private _messages:TelegramMessage[] = [];

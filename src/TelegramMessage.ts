@@ -1,5 +1,6 @@
 import moment, { Moment } from 'moment';
 import { ContentType, TelegramUser, TelegramChat } from '.';
+import { AnyMessage, TextObject, ImportMessageOptions } from './types';
 
 export default class TelegramMessage {
   private _data:AnyMessage;
@@ -7,7 +8,7 @@ export default class TelegramMessage {
   // TODO: find a better way to access user db
   private _chat:TelegramChat;
 
-  static Defaults:MessageOptions = {
+  static Defaults:ImportMessageOptions = {
     includeStickersAsEmoji: false,
   };
 
@@ -90,7 +91,7 @@ export default class TelegramMessage {
     return this._chat.messageByID(Number(this.data.reply_to_message_id));
   }
 
-  public text(inOptions:MessageOptions = {}):string {
+  public text(inOptions:ImportMessageOptions = {}):string {
     const raw:unknown = this.data.text;
     const opts = { ...TelegramMessage.Defaults, ...inOptions };
     let retText = '';

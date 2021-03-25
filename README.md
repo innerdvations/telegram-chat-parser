@@ -53,7 +53,7 @@ This module attempts to match data used by Telegram API but with a few exception
     participants: TelegramUser[];
 
     // Options for converting data
-    Defaults: ChatOptions & MessageOptions;
+    Defaults: ChatOptions;
 }
 ```
 
@@ -62,7 +62,7 @@ This module attempts to match data used by Telegram API but with a few exception
 Default values for TelegramChat are shown.
 
 ```typescript
-{
+ImportMessageOptions & {
   ignoreService = false,
   mergeMissingUserIdIntoName = true,
 }
@@ -112,7 +112,7 @@ See  for more detailed descriptions.
 }
 ```
 
-### MessageOptions
+### ImportMessageOptions
 
 ```typescript
 {

@@ -7,6 +7,7 @@ import moment from 'moment';
 import {
   ContentType, TelegramChat, TelegramMessage, TelegramUser,
 } from '../src';
+import { ChatOptions } from '../src/types';
 
 chai.use(chaiLike);
 

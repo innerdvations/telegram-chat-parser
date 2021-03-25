@@ -9,16 +9,16 @@
 //   text:string|[];
 // };
 
-type UnknownIndices = { [index:string]:unknown };
+export type UnknownIndices = { [index:string]:unknown };
 
-type BaseMessage = UnknownIndices & {
+export type BaseMessage = UnknownIndices & {
   id:number;
   type:'message' | 'service';
   date:string;
   text:ExportedText;
 };
 
-type ExportedMessage = BaseMessage & {
+export type ExportedMessage = BaseMessage & {
   from?:string;
   from_id?:number;
   forwarded_from?:string;
@@ -30,7 +30,7 @@ type ExportedMessage = BaseMessage & {
   reply_to_message_id?:number;
 };
 
-type MediaMessage = ExportedMessage & {
+export type MediaMessage = ExportedMessage & {
   file?:string;
   media_type?:string;
   mime_type?:string;
@@ -41,49 +41,49 @@ type MediaMessage = ExportedMessage & {
   thumbnail?:string;
 };
 
-type ServiceMessage = BaseMessage & {
+export type ServiceMessage = BaseMessage & {
   actor?:string;
   actor_id?:number;
   action?:ServiceAction;
   message_id?:number;
 };
 
-type AnyMessage = ExportedMessage & MediaMessage & ServiceMessage;
+export type AnyMessage = ExportedMessage & MediaMessage & ServiceMessage;
 
-type ChatExport = UnknownIndices & {
+export type ChatExport = UnknownIndices & {
   id:number;
   name:string;
   type:string;
   messages:ExportedMessage[];
 };
 
-type MessageOptions = {
+export type ImportMessageOptions = {
   includeStickersAsEmoji?:boolean,
 };
 
-type ChatOptions = MessageOptions & {
+export type ChatOptions = ImportMessageOptions & {
   ignoreService?:boolean,
   mergeMissingUserIdIntoName?:boolean,
 };
 
-type ExportedText = string | [string | TextObject];
+export type ExportedText = string | [string | TextObject];
 
-type TextObject = {
+export type TextObject = {
   type:'bold' | 'italic'| 'underline'| 'strikethrough'| 'code' | 'link' | 'text_link' | 'mention',
   text:string,
 };
 
 // TODO: fill this in with all known service actions
-type ServiceAction = 'pin_message';
+export type ServiceAction = 'pin_message';
 
-type Poll = {
+export type Poll = {
   question:string;
   close:boolean;
   total_voters:number;
   answers:PollAnswers;
 };
 
-type PollAnswers = {
+export type PollAnswers = {
   text:string;
   voters:number;
   chosen:boolean;

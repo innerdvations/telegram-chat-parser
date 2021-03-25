@@ -5,6 +5,7 @@ import chaiLike from 'chai-like';
 import {
   TelegramChat, TelegramMessage, TelegramUser,
 } from '../src';
+import { AnyMessage } from '../src/types';
 
 chai.use(chaiLike);
 
