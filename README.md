@@ -178,7 +178,7 @@ enum ContentType {
 
 ## Useful Links
 
-Telegram uses a variety of schema to define this data, but does not seem to have released a schema for an export. If you are confused about some of the data found in the export, you may find out more in the following links: 
+Telegram uses a variety of schema to define this data, but does not seem to have released a schema for an export. If you are confused about some of the data found in the export, you may find out more in the following links:
 
 [Telegram Bot schema](https://core.telegram.org/bots/api)
 
