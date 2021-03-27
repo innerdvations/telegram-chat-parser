@@ -57,8 +57,7 @@ TypeScript:
     // name of the chat / name of the user the chat is with
     name: String;
     
-    // bot_chat, private_group, personal_chat, public_
-    // Possibly supergroup, channel, group, or any other Telegram schema type but those haven't been tested)
+    // type of chat (see below)
     type: ChatType;
 
     // shortcuts to check type
