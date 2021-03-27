@@ -110,10 +110,10 @@ export type Action =
 
 // List all message types above
 export type AnyMessage =
-  ExportedMessage &
-  MediaMessage &
-  PollMessage &
-  PhotoMessage &
+  ExportedMessage |
+  MediaMessage |
+  PollMessage |
+  PhotoMessage |
   ExportedService;
 
 export type ChatExport = UnknownIndices & {
