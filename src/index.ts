@@ -4,6 +4,7 @@
 import * as types from './types';
 
 export namespace Types {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   export import mod = types;
 }
 
