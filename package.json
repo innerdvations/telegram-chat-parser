@@ -31,7 +31,7 @@
     "test-min": "./node_modules/.bin/ts-mocha --reporter min",
     "test-watch": "./node_modules/.bin/ts-mocha src/**/*.spec.ts tests/**/*.spec.ts --watch",
     "coverage": "./node_modules/.bin/nyc yarn test-min",
-    "lint": "./node_modules/.bin/eslint",
+    "lint": "./node_modules/.bin/eslint .",
     "dev": "yarn run lint && yarn run coverage",
     "dev-watch": "./node_modules/.bin/nodemon --exec yarn dev",
     "dev-watch-poll": "./node_modules/.bin/nodemon -L --exec yarn dev"
